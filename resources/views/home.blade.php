@@ -15,6 +15,19 @@
                     @endif
 
                     You are logged in!
+                    {!! Form::open(['url' => '/searchBus']) !!}
+                    {!! Form::token() !!}
+                    {!! Form::label('from', 'From') !!}
+                    {!! Form::select('from', 
+                        [ 'ABV' => 'Abuja',
+                        'LOS' => 'Lagos',
+                        ]) !!}
+                        {!! Form::label('to', 'To') !!}
+                    {!! Form::select('to', 
+                        [ 'ABV' => 'Abuja',
+                        'LOS' => 'Lagos',
+                        ]) !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
