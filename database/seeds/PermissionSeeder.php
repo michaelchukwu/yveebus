@@ -34,26 +34,7 @@ class PermissionSeeder extends Seeder
             'display_name' => 'Delete Role',
             'description' => 'Delete Role'
             ],
-            [
-            'name' => 'item-list',
-            'display_name' => 'Display Item Listing',
-            'description' => 'See only Listing Of Item'
-            ],
-            [
-            'name' => 'item-create',
-            'display_name' => 'Create Item',
-            'description' => 'Create New Item'
-            ],
-            [
-            'name' => 'item-edit',
-            'display_name' => 'Edit Item',
-            'description' => 'Edit Item'
-            ],
-            [
-            'name' => 'item-delete',
-            'display_name' => 'Delete Item',
-            'description' => 'Delete Item'
-            ]
+     
         ];
         foreach($permission as $key=>$value){
             Permission::create($value);

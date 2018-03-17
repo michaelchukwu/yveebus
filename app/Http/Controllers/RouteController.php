@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Location;
+use App\Route;
 use DB;
 
 class RouteController extends Controller
@@ -13,10 +14,10 @@ class RouteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request)
+    {   
         $data = Route::orderBy('id','DESC')->paginate(5);
-        return view('route.index',compact('data'))
+        return view('routes.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -28,7 +29,7 @@ class RouteController extends Controller
     public function create()
     {
         $location = Location::get();
-        return view('route.create',compact($location));
+        return view('routes.create',compact('location'));
     }
 
     /**
@@ -39,7 +40,22 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'from' => 'required',
+            'to' => 'required|different:from',
+            'time' => 'required',
+            'duration' => 'required',
+            'amount' => 'required'            
+        ]);
+
+
+        $input = $request->all();
+
+        $route = Route::create($input);
+
+
+        return redirect()->route('routes.index')
+                        ->with('success','Route created successfully');
     }
 
     /**
@@ -50,7 +66,8 @@ class RouteController extends Controller
      */
     public function show($id)
     {
-        //
+        $route = Route::find($id);
+        return view('routes.show',compact('route'));
     }
 
     /**
@@ -61,7 +78,9 @@ class RouteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $route = Route::find($id);
+        $location = Location::get();
+        return view('routes.edit',compact('route', 'location'));
     }
 
     /**
@@ -73,7 +92,24 @@ class RouteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'from' => 'required',
+            'to' => 'required|different:from',
+            'time' => 'required',
+            'duration' => 'required',
+            'amount' => 'required' 
+        ]);
+
+
+        $input = $request->all();
+
+        $route = Route::find($id);
+        $route->update($input);
+
+
+
+        return redirect()->route('routes.index')
+                        ->with('success','Route updated successfully');
     }
 
     /**
@@ -84,6 +120,23 @@ class RouteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Route::find($id)->delete();
+        return redirect()->route('routes.index')
+                        ->with('success','Route deleted successfully');
+    }
+
+    public function activate($id)
+    {
+        $route = Route::find($id);
+        $route->update(['active'=>1]);
+        return redirect()->route('routes.index')
+                        ->with('success','Route Activated successfully');
+    }
+        public function deactivate($id)
+    {
+        $route = Route::find($id);
+        $route->update(['active' => 0]);
+        return redirect()->route('routes.index')
+                        ->with('success','Route Deactivated successfully');
     }
 }

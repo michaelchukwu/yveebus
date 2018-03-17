@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoutesTable extends Migration
+class CreateWalletsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateRoutesTable extends Migration
      */
     public function up()
     {
-        Schema::create('routes', function (Blueprint $table) {
+        DB::beginTransaction();
+        Schema::create('wallets', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('from')->unsigned();
-            $table->integer('to')->unsigned();
-            $table->time('time');
-            $table->integer('duration');
-            $table->decimal('amount', 8, 2);
+            $table->integer('user_id')->unsigned();
+            $table->decimal('amount',8,2);
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
+        DB::commit();
     }
 
     /**
@@ -31,6 +32,6 @@ class CreateRoutesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('routes');
+        Schema::dropIfExists('wallets');
     }
 }

@@ -15,19 +15,27 @@
                     @endif
 
                     You are logged in!
-                    {!! Form::open(['url' => '/searchBus']) !!}
+                    {!! Form::open(['url' => '/available']) !!}
                     {!! Form::token() !!}
                     {!! Form::label('from', 'From') !!}
-                    {!! Form::select('from', 
-                        [ 'ABV' => 'Abuja',
-                        'LOS' => 'Lagos',
-                        ]) !!}
-                        {!! Form::label('to', 'To') !!}
-                    {!! Form::select('to', 
-                        [ 'ABV' => 'Abuja',
-                        'LOS' => 'Lagos',
-                        ]) !!}
+                    
+                        <select name="from">
+                            @foreach($location as $key=>$value)
+                            <option value="{!! $value->id !!}"> {!! $value->name !!} - {!! $value->code !!}</option>
+                            @endforeach
+                        </select>
+                    
+                    {!! Form::label('to', 'To') !!}
+                    
+                        <select name="to">
+                            @foreach($location as $key=>$value)
+                            <option value="{!! $value->id !!}"> {!! $value->name !!} - {!! $value->code !!}</option>
+                            @endforeach
+                        </select>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    {{--  {!! Form::button('Replace Message',['onClick'=>'searchbus()']); !!}  --}}
                     {!! Form::close() !!}
+                   
                 </div>
             </div>
         </div>

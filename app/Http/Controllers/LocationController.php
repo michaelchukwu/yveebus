@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Location;
+use DB;
 
 class LocationController extends Controller
 {
@@ -11,9 +13,11 @@ class LocationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $locations = Location::orderBy('id','DESC')->paginate(5);
+        return view('locations.index',compact('locations'))
+             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -23,7 +27,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        //
+        return view('locations.create');
     }
 
     /**
@@ -34,7 +38,20 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'code' => 'required|unique:locations,code',
+        ]);
+
+
+        $location = new Location();
+        $location->name = $request->input('name');
+        $location->code = $request->input('code');
+        $location->save();
+
+
+        return redirect()->route('locations.index')
+                        ->with('success','Location created successfully');
     }
 
     /**
@@ -45,7 +62,8 @@ class LocationController extends Controller
      */
     public function show($id)
     {
-        //
+        $location = Location::find($id);
+        return view('locations.show',compact('location'));
     }
 
     /**
@@ -56,7 +74,8 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $location = Location::find($id);
+        return view('locations.edit',compact('location'));
     }
 
     /**
@@ -68,7 +87,23 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'code' => 'required',
+        ]);
+
+
+        $location = Location::find($id);
+        $location->name = $request->input('name');
+        $location->code = $request->input('code');
+        $location->save();
+
+
+
+
+
+        return redirect()->route('locations.index')
+                        ->with('success','Location updated successfully');
     }
 
     /**
@@ -79,6 +114,8 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table("locations")->where('id',$id)->delete();
+        return redirect()->route('locations.index')
+                        ->with('success','Location deleted successfully');
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Location;
 use App\Role;
+
 
 class HomeController extends Controller
 {
@@ -23,7 +25,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        return view('home');
+    {   $location = Location::get();
+        return view('home', compact('location'));
     }
 }
