@@ -23,19 +23,28 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Route::auth();
 
-Route::post('/available', 'BusController@searchBus');
+Route::post('/available', 'BusController@searchBus')->name('available');
 Route::group(['middleware' => ['auth']], function() {
 
 
 // Route::get('/home', 'HomeController@index');
-
+Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
+Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
+ 
 
 Route::resource('users','UserController', ['middleware' => ['permission:users']]);
 Route::resource('routes', 'RouteController', ['middleware' => ['permission:routes']]);
 
+Route::resource('promos', 'PromoController');
+
 Route::get('routes/{id}/activate',['as'=>'route.activate','uses'=>'RouteController@activate','middleware' => ['permission:route-activate']]);
 Route::get('routes/{id}/deactivate',['as'=>'route.deactivate','uses'=>'RouteController@deactivate','middleware' => ['permission:route-deactivate']]);
+
+Route::get('trip/{id}', 'BusController@showBus')->name('trip');
+Route::post('trip/book', 'BusController@bookBus')->name('book');
+
 Route::get('wallet',['as'=>'wallet.index','uses'=>'WalletController@index']);
+Route::get('wallet/create', 'WalletController@create')->name('create.wallet');
 Route::resource('locations', 'LocationController', ['middleware' => ['permission:location']]);
 
 Route::get('roles',['as'=>'roles.index','uses'=>'RoleController@index','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);

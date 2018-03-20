@@ -17,12 +17,41 @@ class WalletController extends Controller
 
         return view('wallets.index', compact('wallet'));
     }
-    public function add()
+    public function create()
     {
-
+        $wallet = new Wallet();
+        $wallet->user_id = Auth::user()->id;
+        $wallet->amount = 0;
+        $wallet->save();
+        return redirect()->back()->with('success','Wallet Created  successfully');
     }
-    public function use()
+    public function add($paymentDetails)
     {
-
+        $id = Auth::user()->id;
+        $wallet = new Wallet();
+        $amount = $wallet->where('user_id', $id)->pluck('amount');
+        // dd($amount);
+        foreach($amount as $key=>$cash){
+            $money = $cash + ($paymentDetails['data']['amount']/100);
+            $wallet->where('user_id', $id)->update(['amount'=>$money]);
+        }
+        
+        
+        return true;
+        // dd($paymentDetails);
+    }
+    public function use($amount2debit)
+    {
+        $id = Auth::user()->id;
+        $wallet = new Wallet();
+        $amount = $wallet->where('user_id', $id)->pluck('amount');
+        // dd($amount);
+        foreach($amount as $key=>$cash){
+            $money = $cash - $amount2debit;
+            $wallet->where('user_id', $id)->update(['amount'=>$money]);
+        }
+        
+        
+        return true;
     }
 }

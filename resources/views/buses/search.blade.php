@@ -38,7 +38,7 @@ $now = \Carbon\Carbon::now()->format('H:i:s');?>
 <td>{{ $route->duration}} mins</td>
 <td>{{ $route->amount}}</td>
 <td>
-<a class="btn btn-info" href="{{ route('routes.show',$route->id) }}">Show</a>
+<a class="btn btn-info" href="{{ route('trip',$route->id) }}">Book</a>
 </td>
 </tr>
 @endforeach
