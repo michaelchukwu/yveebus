@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Location;
 use App\Route;
+use App\Bus;
 use DB;
 
 class RouteController extends Controller
@@ -29,7 +30,8 @@ class RouteController extends Controller
     public function create()
     {
         $location = Location::get();
-        return view('routes.create',compact('location'));
+        $bus = Bus::get();
+        return view('routes.create',compact('location', 'bus'));
     }
 
     /**
@@ -45,7 +47,8 @@ class RouteController extends Controller
             'to' => 'required|different:from',
             'time' => 'required',
             'duration' => 'required',
-            'amount' => 'required'            
+            'amount' => 'required',
+            'bus_id' => 'required'            
         ]);
 
 

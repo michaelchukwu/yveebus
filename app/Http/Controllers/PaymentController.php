@@ -56,4 +56,17 @@ class PaymentController extends Controller
             $wallet->add($paymentDetails);
         }
     }
+        public function recordCharge($paymentamount)
+    {
+        // dd($paymentDetails['data']['amount']/100);
+        $pay = $paymentamount;
+        $payment = new Payment();
+        $payment->amount = $pay;
+        $payment->user_id = Auth::user()->id;
+        $payment->type = 'debit';
+        $payment->source = 'Trip';
+        if($payment->save()){
+            return $payment->id;
+        }
+    }
 }

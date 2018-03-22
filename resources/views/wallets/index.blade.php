@@ -1,6 +1,13 @@
 @extends('layouts.app')
  
 @section('content')
+    <script>
+    window.onload = function(){
+    document.getElementById('submitAmount').onclick = function(){
+        document.getElementById('amount').value = document.getElementById('cost').value * 100;   
+        }
+    }; 
+    </script>
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
@@ -29,7 +36,7 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            @if($wallet)
+            @if($wallet->first())
             <strong>Wallet ID:</strong>
             {{ $wallet[0]->id }}
         </div>
@@ -41,7 +48,7 @@
         </div>
     </div>
     @else
-        <a href="createwallet" type="button" class="btn btn-default">Create Wallet</a>
+        <a href="wallet/create" type="button" class="btn btn-default">Create Wallet</a>
     @endif
         <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">

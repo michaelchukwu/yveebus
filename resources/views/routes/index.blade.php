@@ -7,7 +7,7 @@
             <h2>Routes Management</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('routes.create') }}"> Create New User</a>
+            <a class="btn btn-success" href="{{ route('routes.create') }}"> Create New Route</a>
         </div>
     </div>
 </div>
@@ -24,6 +24,7 @@
 <th>Time of Departure</th>
 <th>Duration</th>
 <th>Cost</th>
+<th>Bus</th>
 <th width="280px">Action</th>
 </tr>
 @foreach ($data as $key => $route)
@@ -36,6 +37,8 @@
 <td>{{ $route->time}}</td>
 <td>{{ $route->duration}}</td>
 <td>{{ $route->amount}}</td>
+<?php $bus = App\Bus::where('id', $route->bus_id)->first(); ?>
+<td>{{ $bus->reg_num }}</td>
 <td>
 <a class="btn btn-info" href="{{ route('routes.show',$route->id) }}">Show</a>
 <a class="btn btn-primary" href="{{ route('routes.edit',$route->id) }}">Edit</a>

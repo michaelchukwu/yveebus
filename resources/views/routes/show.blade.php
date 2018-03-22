@@ -44,5 +44,12 @@
                {{ $route->amount }}
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Bus Reg Num:</strong>
+                <?php $bus = App\Bus::where('id', $route->bus_id)->first(); ?>
+                {{ $bus->reg_num }}
+            </div>
+        </div>
 </div>
 @endsection

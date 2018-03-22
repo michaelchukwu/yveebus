@@ -15,6 +15,9 @@ class UpdateRoutesTable extends Migration
     {
         Schema::table('routes', function (Blueprint $table) {
             $table->integer('active')->after('amount')->default(0);
+            $table->integer('bus_id')->unsigned()->after('active');
+            $table->foreign('bus_id')->references('id')->on('buses')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -27,6 +30,7 @@ class UpdateRoutesTable extends Migration
     {
         Schema::table('routes', function (Blueprint $table) {
             $table->dropColumn('active');
+            $table->dropColumn('bus_id');
         });
     }
 }

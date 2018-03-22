@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Location;
 use App\Role;
-
+use Auth;
 
 class HomeController extends Controller
 {
@@ -25,7 +25,11 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $location = Location::get();
+    {   
+        if(Auth::user()->hasRole('owner')){
+            return view('admin');
+        }
+        $location = Location::get();
         return view('home', compact('location'));
     }
 }

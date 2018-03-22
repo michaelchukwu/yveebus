@@ -45,18 +45,27 @@ class BusController extends Controller
         $amount2debit = $input['amount']; 
         if($input['promo_code'] != null){
             $promoDeets = Promo::where('code', $input['promo_code'])->get();
-            foreach($promoDeets as $promodeet){
-                $promo_id = $promodeet->id;
-                $promo_amount = $promodeet->amount;
-                $promo_type = $promodeet->type;
-                $promo_description = $promodeet->description;
-                if($promo_type == 'discount'){
-                    $amount2debit = $input['amount'] - (float)$promo_amount;
-                }else{
-                    $amount2debit = $input['amount'];
-                    $wallet->add($paymentDetails['data']['amount'] = (int)$promo_amount*100);
+            // dd($promoDeets);
+            // if($promoDeets-{
+            //     
+            // }
+            if($promoDeets->count() > 0){
+
+
+                foreach($promoDeets as $promodeet){
+                        $promo_id = $promodeet->id;
+                        $promo_amount = $promodeet->amount;
+                        $promo_type = $promodeet->type;
+                        $promo_description = $promodeet->description;
+                        if($promo_type == 'discount'){
+                            $amount2debit = $input['amount'] - (float)$promo_amount;
+                        }else{
+                            $amount2debit = $input['amount'];
+                            $wallet->add($paymentDetails['data']['amount'] = (int)$promo_amount*100);
+                        }
                 }
-                
+            }else{
+                return redirect()->back()->with('error', 'This Promo code does not exist');
             }
         }
         
@@ -66,24 +75,30 @@ class BusController extends Controller
         }
         $wallet->use($amount2debit);
         // create a payment
-
+        $payment = new PaymentController();
+        $paymentdone = $payment->recordCharge($amount2debit);
         // create a trip
         $trip = new Trip();
         $trip->user_id = Auth::user()->id;
         $trip->driver_id = 2;
         //return payment id;
+        $trip->payment_id = $paymentdone;
         $trip->route_id = $input['route_id'];
         $trip->completed = 0;
         $trip->save();
-        // claim a seat
         // record promo use
         if($input['promo_code'] != null){
             //promo use
+            DB::table('promo_use')->insert(
+                ['promo_id'=>$promo_id,'trip_id'=>$trip->id,'user_id'=>Auth::user()->id]
+            );
         }
-        // return a ticket and estimated time of bus arival
-
+        // claim a seat...
+        // A seat at tis point is taken... we shall return
+        // return a ticket and estimated time of bus arrival
+        // send the time for a countdown
+        return view('buses.booked', compact(''));
         
-        dd($input);
     }
     public function showBus($id)
     {   

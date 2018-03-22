@@ -61,6 +61,15 @@
                 <input type="number" name="amount" value={!! $route->amount !!} class="form-control">
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Bus:</strong>
+                <select name="bus_id" class="form-control">
+                   <?php $bus = App\Bus::where('id', $route->bus_id)->first(); ?>
+                        <option selected value="{!!$bus->id!!}">{!! $bus->reg_num !!}</option>
+                </select>
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 <button type="submit" class="btn btn-primary">Submit</button>
         </div>

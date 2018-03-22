@@ -10,13 +10,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
-    <script>
-    window.onload = function(){
-    document.getElementById('submitAmount').onclick = function(){
-        document.getElementById('amount').value = document.getElementById('cost').value * 100;   
-        }
-    }; 
-    </script>
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
@@ -43,6 +36,7 @@
                     <li><a href="{{ route('locations.index') }}">Locations</a></li>
                     <li><a href="{{ route('routes.index') }}">Routes</a></li>
                     <li><a href="{{ route('promos.index') }}">Promo</a></li>
+                    <li><a href="#">Buses</a></li>
                 </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
@@ -77,5 +71,16 @@
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <script>
+        $(document).ready(function(){
+            $('#submitAmount').attr('disabled',true);
+            $('#cost').keyup(function(){
+                if($(this).val().length !=0)
+                    $('#submitAmount').attr('disabled', false);            
+                else
+                    $('#submitAmount').attr('disabled',true);
+            })
+        });
+    </script>
 </body>
 </html>

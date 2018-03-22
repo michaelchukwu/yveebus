@@ -62,6 +62,16 @@
                 <input type="number" name="amount" class="form-control">
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Bus:</strong>
+                <select name="bus_id" class="form-control">
+                    @foreach($bus as $buses)
+                    <option value={!! $buses->id !!}> {!! $buses->reg_num!!}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 <button type="submit" class="btn btn-primary">Submit</button>
         </div>
