@@ -23,6 +23,7 @@
             <div class="form-group">
                 <strong id="time-up">Your bus arrives in:</strong>
                 <div id="timer"></div>
+                Ticket No: {{ $trip->time }}
             </div>
         </div>
 </div>
@@ -30,7 +31,7 @@
 
 <script>
 // Set the date we're counting down to
-var countDownDate = new Date("<?php echo 'Mar 21, 2018 09:39:25';?>").getTime();
+var countDownDate = new Date("<?php echo $trip->time;?>").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {

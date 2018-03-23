@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('trip/{id}', 'BusController@showBus')->name('trip');
     Route::post('trip/book', 'BusController@bookBus')->name('book');
 
-Route::get('wallet',['as'=>'wallet.index','uses'=>'WalletController@index']);
+Route::get('wallet',['as'=>'wallet.index','uses'=>'WalletController@index'])->name('wallet');
 Route::get('wallet/create', 'WalletController@create')->name('create.wallet');
 });
 // routes that only admin or owner can access

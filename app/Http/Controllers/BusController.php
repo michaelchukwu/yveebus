@@ -15,10 +15,10 @@ class BusController extends Controller
     public function searchBus(Request $request){
 
         // validating the entries
-        // $this->validate($request, [
-        //     'from' => 'required',
-        //     'to' => 'required|different:from'
-        // ]);
+        $this->validate($request, [
+            'from' => 'required',
+            'to' => 'required|different:from'
+        ]);
 
         $input = $request->all();
             // dd($input['from']);
@@ -28,7 +28,7 @@ class BusController extends Controller
         ->where('active', 1)
         ->get();
         $location = Location::get();
-        
+        //
 
         // return response()->json(array('routes'=>$routes), 200);
         return view('buses.search', compact('data', 'location'));
@@ -40,6 +40,9 @@ class BusController extends Controller
         $wallet = new WalletController();
         // check the wallet balance
         $walletbalance = Wallet::where('user_id',Auth::user()->id)->pluck('amount');
+        if($walletbalance->count() == 0){
+            return redirect()->route('wallet')->with('error', 'Please create and fund your wallet');
+        }
         // dd($walletbalance[0]);
         // consider promo code
         $amount2debit = $input['amount']; 
@@ -84,6 +87,8 @@ class BusController extends Controller
         //return payment id;
         $trip->payment_id = $paymentdone;
         $trip->route_id = $input['route_id'];
+        $trip->bus_id = $input['bus_id'];
+        $trip->code = $this->generateTicketCode();
         $trip->completed = 0;
         $trip->save();
         // record promo use
@@ -94,15 +99,42 @@ class BusController extends Controller
             );
         }
         // claim a seat...
+        // $nextFreeSeat = DB::table('seats')
+        //         ->where('bus_id', $input['bus_id'])
+        //         ->where('free', 0)->first();
+        // DB::table('seats')
+        //         ->where('id', $nextFreeSeat->id)
+        //         ->update(['free'=> 1]);
         // A seat at tis point is taken... we shall return
         // return a ticket and estimated time of bus arrival
+        $trip->time = Route::where('id', $trip->route_id)->first()->time;
         // send the time for a countdown
-        return view('buses.booked', compact(''));
+        return view('buses.booked', compact('trip'));
         
     }
     public function showBus($id)
     {   
         $route = Route::find($id);
         return view('buses.show', compact('route'));
+    }
+
+    //generate the ticket code
+    function generateTicketCode(){
+    $an = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $su = strlen($an) - 1;
+    return substr($an, rand(0, $su), 1).
+            substr($an, rand(0, $su), 1) .
+            substr($an, rand(0, $su), 1) .
+            substr($an, rand(0, $su), 1) .
+            substr($an, rand(0, $su), 1) .
+            substr($an, rand(0, $su), 1);
+    }
+
+    // check if seats on a bus are free
+    public function checkFreeSeat($bus_id)
+    {
+        return DB::table('seats')
+                ->where('bus_id', $bus_id)
+                ->where('free', 0)->count();
     }
 }

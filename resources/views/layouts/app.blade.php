@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/user/assets/css/jquery.seat-charts.css">
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 </head>
 <body id="app-layout">
@@ -71,6 +72,7 @@
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/user/assets/js/jquery.seat-charts.min.js"></script>    
         <script>
         $(document).ready(function(){
             $('#submitAmount').attr('disabled',true);
@@ -82,5 +84,29 @@
             })
         });
     </script>
+    	<script>
+			var firstSeatLabel = 1;
+			$(document).ready(function () {
+				var sc = $('#seat-map').seatCharts({
+					map: [
+						'aa_aa'
+					],
+					seats: {
+						a: {
+							price: <?php if(isset($route->amount)){ echo $route->amount;}?>
+						}
+					},
+					naming: {
+						top: false,
+						left: false,
+						// column: ['A', 'B', 'C'],
+						getLabel: function(character, row, column){
+							return firstSeatLabel++;
+						}
+					}
+				});
+			});
+		</script>
+
 </body>
 </html>
