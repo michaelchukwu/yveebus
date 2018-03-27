@@ -29,9 +29,10 @@ class BusController extends Controller
         ->get();
         $location = Location::get();
         //
-
+        $trips = Trip::where('user_id', Auth::user()->id)
+                        ->latest()->limit(3)->get();
         // return response()->json(array('routes'=>$routes), 200);
-        return view('buses.search', compact('data', 'location'));
+        return view('buses.search', compact('data', 'location', 'trips'));
     }
     public function bookBus(Request $request)
     {

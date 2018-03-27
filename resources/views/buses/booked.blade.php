@@ -1,34 +1,57 @@
-@extends('layouts.app')
+@extends('layouts.new')
  
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2> Trip Confirmed</h2>
-        </div>
-    </div>
-</div>
-@if ($message = Session::get('success'))
-<div class="alert alert-success">
-<p>{{ $message }}</p>
-</div>
-@endif
-@if ($message = Session::get('error'))
-<div class="alert alert-danger">
-<p>{{ $message }}</p>
-</div>
-@endif
-<div class="row">
-<div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong id="time-up">Your bus arrives in:</strong>
-                <div id="timer"></div>
-                Ticket No: {{ $trip->time }}
+<div id="page-content">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="/home">Home</a></li>
+            <li class="active">Booked</li>
+        </ol>
+        {{--  end breadcrumb  --}}
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                <p>{{ $message }}</p>
+                </div>
+                @endif
+                @if ($message = Session::get('error'))
+                <div class="alert alert-danger">
+                <p>{{ $message }}</p>
+                </div>
+                @endif
+                <section class="shadow">
+                    <div class="map height-250px" id="map-detail"></div>
+                    <!--end map-->
+                    <div class="content">
+                        <div class="vertical-aligned-elements">
+                            {{--  <div class="element"><img src="{{ asset('assets/img/logo-2.png') }}" alt=""></div>  --}}
+                            {{--  <div class="element text-align-right"><a href="#" class="btn btn-primary btn-rounded btn-xs">Claim</a></div>  --}}
+                        </div>
+                        <hr>
+                        <div class="content">
+                            <div class="form-group">
+                                <strong id="time-up">Your bus arrives at: {{ $trip->time }}</strong>
+                                <div id="tier"></div>
+                                    Ticket No: {{ $trip->code }}
+                            </div>
+                        </div>
+                        {{--  <address>
+                            <figure><i class="fa fa-map-marker"></i>3858 Marion Street<br>Morrisville, VT 05661 </figure>
+                            <figure><i class="fa fa-envelope"></i><a href="#">email@example.com</a></figure>
+                            <figure><i class="fa fa-phone"></i>316-436-8619</figure>
+                            <figure><i class="fa fa-globe"></i><a href="#">www.markysrestaurant.com</a></figure>
+                        </address>  --}}
+                    </div>
+                </section>
             </div>
+            {{--  end col-sm-6  --}}
         </div>
+        {{--  end row  --}}
+    </div>
+    {{--  end container  --}}
 </div>
-
-
+{{--  end page-content     --}}
 <script>
 // Set the date we're counting down to
 var countDownDate = new Date("<?php echo $trip->time;?>").getTime();

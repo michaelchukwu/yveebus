@@ -31,7 +31,7 @@ class PaymentController extends Controller
         $paymentDetails = Paystack::getPaymentData();
 
         $this->recordPayment($paymentDetails);
-        return redirect()->route('wallet.index')
+        return redirect()->route('wallet')
                         ->with('success','Wallet Credited successfully');
         
         // Now you have the payment details,

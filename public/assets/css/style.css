@@ -81,6 +81,9 @@ body .primary-nav.has-mega-menu .mega-menu-parent .mega-menu ul li, body .second
   background-color: transparent;
   border: none;
 }
+.border-left{
+  border-left: 1px dotted #ccc;
+}
 body .primary-nav.has-mega-menu .mega-menu-parent .mega-menu ul li a, body .secondary-nav.has-mega-menu .mega-menu-parent .mega-menu ul li a {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   opacity: 0.7;
@@ -2173,6 +2176,21 @@ body.nav-btn-only #page-header .primary-nav ul li .nav-wrapper ul li:hover {
   color: #fff;
 }
 
+.logout{
+  background: none !important;
+  border: none;
+  color: white;
+  /* padding: 0 !important; */
+  font: inherit;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 11px;
+  text-transform: uppercase;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 /* 3. Elements Styling */
 body {
   color: #1f1f1f;
@@ -2204,7 +2222,7 @@ a {
   -moz-transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  color: #4611a7;
+  color: #e20c53;
   text-decoration: none;
   position: relative;
 }
@@ -2292,7 +2310,8 @@ dl dd {
 h1 {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   opacity: 0.8;
-  color: #4611a7;
+  /* color: #4611a7; */
+  color: #0d1536;
   font-size: 36px;
   font-weight: lighter;
   margin-top: 5px;
@@ -2300,14 +2319,14 @@ h1 {
 
 h2 {
   font-size: 26px;
-  color: #4611a7;
+  color: #0d1536;
   font-weight: lighter;
   margin-top: 5px;
 }
 
 h3 {
   margin-top: 0px;
-  color: #4611a7;
+  color: #0d1536;
   font-size: 18px;
   margin-bottom: 25px;
 }
@@ -5014,7 +5033,7 @@ section:not(.block) h2 {
   margin-bottom: 0;
 }
 #page-footer .footer-navigation {
-  background-color: #4611a7;
+  background-color: #0d1536;
   padding: 8px 0;
   color: #fff;
   font-size: 12px;
@@ -6250,12 +6269,12 @@ input[type="date"]::-webkit-input-placeholder {
   transform: translateY(1px);
 }
 .btn.btn-primary {
-  background-color: #4611a7;
+  background-color: #e20c53;
   color: #fff;
-  border-color: #4611a7;
+  border-color: #e20c53;
 }
 .btn.btn-primary:active, .btn.btn-primary:focus, .btn.btn-primary:hover, .btn.btn-primary:active:hover, .btn.btn-primary:active:focus, .btn.btn-primary:focus:hover {
-  background-color: #4611a7;
+  background-color: #e20c53;
 }
 .btn.btn-primary:active:after, .btn.btn-primary:focus:after, .btn.btn-primary:hover:after, .btn.btn-primary:active:hover:after, .btn.btn-primary:active:focus:after, .btn.btn-primary:focus:hover:after {
   background-color: rgba(0, 0, 0, 0.2);
