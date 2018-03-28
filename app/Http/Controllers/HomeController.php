@@ -26,9 +26,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->hasRole('owner')){
-            return view('admin');
-        }
         $location = Location::get();
         return view('home', compact('location'));
     }

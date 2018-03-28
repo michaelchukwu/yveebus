@@ -5,13 +5,13 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><a href="#">Home</a></li>
-                <li class="active">403</li>
+                <li class="active">404</li>
             </ol>
             <!--end breadcrumb-->
             <section class="page-title center error">
-                <h1>403</h1>
+                <h1>404</h1>
                 <h2>Error</h2>
-                <p>Stop! You have gone past your busstop</p>
+                <p>You are not lost, Go to the previous busstop or</p>
             </section>
             <!--end page-title-->
             <div class="row">

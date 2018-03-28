@@ -37,6 +37,7 @@ Route::get('wallet/create', 'WalletController@create')->name('create.wallet');
 // routes that only admin or owner can access
 Route::group(['middleware' => ['role:admin|owner']], function() {
 //start here
+Route::get('/janitor', 'AdminController@index');
 Route::resource('users','UserController');
 Route::resource('routes', 'RouteController');
 Route::resource('promos', 'PromoController');

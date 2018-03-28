@@ -2,7 +2,6 @@
 
 @section('content')
 
-@yield('content')
     <div id="page-content">
         <div class="hero-section has-background full-screen">
             <div class="wrapper">

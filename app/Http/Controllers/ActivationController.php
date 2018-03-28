@@ -10,16 +10,17 @@ class ActivationController extends Controller
 {
     public function index()
     {
+
         if (Auth::user()->activated == 0)
         {
             $check = Activation::where('user_id', Auth::user()->id)->first();
-            if($check->count() == 0){
+            if($check == null){
                 $code = $this->generateActivationCode();
                 Activation::create([
                     'user_id'=>Auth::user()->id,
                     'code'=>$code
                 ]);
-            return view('auth.activate');
+            return view('auth.activate', compact('code'));
             }else{
                 return view('auth.activate');
             }

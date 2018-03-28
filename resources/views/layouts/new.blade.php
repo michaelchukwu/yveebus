@@ -138,5 +138,39 @@
 <script>
     autoComplete();
 </script>
-
+    <script src="/user/assets/js/jquery.seat-charts.min.js"></script>    
+        <script>
+        $(document).ready(function(){
+            $('#submitAmount').attr('disabled',true);
+            $('#cost').keyup(function(){
+                if($(this).val().length !=0)
+                    $('#submitAmount').attr('disabled', false);            
+                else
+                    $('#submitAmount').attr('disabled',true);
+            })
+        });
+    </script>
+    	<script>
+			var firstSeatLabel = 1;
+			$(document).ready(function () {
+				var sc = $('#seat-map').seatCharts({
+					map: [
+						'aa_aa'
+					],
+					seats: {
+						a: {
+							price: '<?php if(isset($route->amount)){ echo $route->amount;}?>'
+						}
+					},
+					naming: {
+						top: false,
+						left: false,
+						// column: ['A', 'B', 'C'],
+						getLabel: function(character, row, column){
+							return firstSeatLabel++;
+						}
+					}
+				});
+			});
+		</script>
 </body>

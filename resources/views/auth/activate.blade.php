@@ -30,7 +30,10 @@
                                 @endif
                             </div>
                         </div>
-
+			<span class="help-block">
+					For test Purpose:
+                                        <strong>Acitvation Toke: {{ $code) }}</strong>
+                                    </span>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">

@@ -93,7 +93,7 @@
 					],
 					seats: {
 						a: {
-							price: <?php if(isset($route->amount)){ echo $route->amount;}?>
+							price: '<?php if(isset($route->amount)){ echo $route->amount;}?>'
 						}
 					},
 					naming: {
