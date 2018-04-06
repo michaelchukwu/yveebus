@@ -126,9 +126,4 @@ class PromoController extends Controller
         return redirect()->route('promos.index')
                         ->with('success','Promo deleted successfully');
     }
-    
-    public function promo_use()
-    {
-
-    }
 }

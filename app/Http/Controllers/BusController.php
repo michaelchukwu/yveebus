@@ -7,11 +7,54 @@ use App\Route;
 use App\Location;
 use App\Trip;
 use DB;
+use App\Bus;
 use Auth;
 use App\Promo;
 use App\Wallet;
 class BusController extends Controller
 {
+    public function index()
+    {
+        $buses = Bus::get();
+        return view('buses.index', compact('buses'));
+    }
+
+    /**
+     * Display the specified resource for editing.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $bus = Bus::find($id);
+
+        return view('buses.edit',compact('bus'));
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'reg_num' => 'required',
+            'seats' => 'required'
+        ]);
+
+
+        $bus = Bus::find($id);
+        $bus->reg_num = $request->input('reg_num');
+        $bus->seats = $request->input('seats');
+        $bus->save();
+
+        return redirect()->back()->with('success', 'Bus edited successfully');
+    }
+
     public function searchBus(Request $request){
 
         // validating the entries
@@ -44,15 +87,10 @@ class BusController extends Controller
         if($walletbalance->count() == 0){
             return redirect()->route('wallet')->with('error', 'Please create and fund your wallet');
         }
-        // dd($walletbalance[0]);
         // consider promo code
         $amount2debit = $input['amount']; 
         if($input['promo_code'] != null){
             $promoDeets = Promo::where('code', $input['promo_code'])->get();
-            // dd($promoDeets);
-            // if($promoDeets-{
-            //     
-            // }
             if($promoDeets->count() > 0){
 
 
@@ -137,5 +175,11 @@ class BusController extends Controller
         return DB::table('seats')
                 ->where('bus_id', $bus_id)
                 ->where('free', 0)->count();
+    }
+
+    //create bus
+    public function create()
+    {
+        return view('buses.create');
     }
 }
