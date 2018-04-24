@@ -32,7 +32,9 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('wallet', 'WalletController@index')->name('wallet');
     Route::get('wallet/create', 'WalletController@create')->name('create.wallet');
-
+    Route::get('profile', 'ProfileController@index')->name('profile');
+    Route::post('profile', 'ProfileController@update')->name('profile.update');
+    Route::get('history', 'ProfileController@history')->name('history');
 
     // routes that only admin or owner can access
     Route::group(['middleware' => ['role:admin|owner']], function() {

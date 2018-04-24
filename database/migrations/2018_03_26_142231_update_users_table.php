@@ -16,6 +16,7 @@ class UpdateUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->integer('activated')->default(0);
             $table->string('phone')->after('email');
+            $table->string('avatar')->after('phone');
         });
     }
 

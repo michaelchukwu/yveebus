@@ -37,6 +37,12 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>phone:</strong>
+                {!! Form::text('phone', null, array('placeholder' => 'Phone number','class' => 'form-control')) !!}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>Password:</strong>
                 {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
             </div>
