@@ -17,6 +17,8 @@ class CreateLocationsTable extends Migration
             $table->increments('id');
             $table->string('code')->unique();
             $table->string('name');
+            $table->string('place_id')->nullable();
+            $table->integer('parent')->unsigned()->default(0);
             $table->timestamps();
         });
     }

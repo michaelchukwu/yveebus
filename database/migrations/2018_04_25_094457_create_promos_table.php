@@ -17,6 +17,7 @@ class CreatePromosTable extends Migration
             $table->increments('id');
             $table->string('code');
             $table->string('type');
+            $table->string('description');
             $table->decimal('amount',8,2);
             $table->timestamps();
         });
@@ -25,7 +26,6 @@ class CreatePromosTable extends Migration
             $table->integer('promo_id')->unsigned();
             $table->integer('trip_id')->unsigned();
             $table->integer('user_id')->unsigned();
-
             $table->foreign('promo_id')->references('id')->on('promos')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('trip_id')->references('id')->on('trips')

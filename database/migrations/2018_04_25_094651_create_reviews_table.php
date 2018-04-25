@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBusesTable extends Migration
+class CreateReviewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,20 @@ class CreateBusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('buses', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('seats');
-            $table->string('reg_num');
-            $table->timestamps();
-        });
-        Schema::create('seats', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('trip_id')->unsigned();
             $table->integer('bus_id')->unsigned();
-            $table->string('name');
-            $table->integer('free');
+            $table->string('review');
+            $table->integer('rating');
             $table->timestamps();
 
             $table->foreign('bus_id')->references('id')->on('buses')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('trip_id')->references('id')->on('trips')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }
@@ -38,7 +38,6 @@ class CreateBusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('buses');
-        Schema::dropIfExists('seats');
+        Schema::dropIfExists('reviews');
     }
 }

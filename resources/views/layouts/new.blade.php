@@ -140,8 +140,8 @@
 </script>
   <script>
   $( function() {
-    var from = <?php echo $from ?>;
-    var to = <?php echo $to ?>;
+    var from = <?php echo $from ?? '' ?>;
+    var to = <?php echo $to ?? '' ?>;
     $( "#from" ).autocomplete({
       source: from
     });

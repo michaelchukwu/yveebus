@@ -17,9 +17,10 @@ class CreateRoutesTable extends Migration
             $table->increments('id');
             $table->integer('from')->unsigned();
             $table->integer('to')->unsigned();
-            $table->time('time');
-            $table->integer('duration');
-            $table->decimal('amount', 8, 2);
+            $table->integer('active')->default(0);
+            $table->integer('bus_id')->unsigned();
+            $table->foreign('bus_id')->references('id')->on('buses')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
