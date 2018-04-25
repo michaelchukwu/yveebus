@@ -19,12 +19,12 @@
                     @endif
                     <div class="form search-form horizontal no-background">
                         <div class="container">
-                            <form action="/available" method="POST">
+                            <form action="/sublocation" method="POST">
                                 {!! Form::token() !!}
                                 <div class="row">
                                     <div class="col-md-6 col-sm-4">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="keyword" placeholder="Enter Location" id="from">
+                                            <input type="text" class="form-control" name="from" placeholder="Enter Location" id="from">
                                             
                                             {{--  <input type="text" class="form-control" name="keyword" placeholder="Enter Location" id="address-autocomplete">  --}}
                                         </div>
@@ -33,7 +33,7 @@
                                     <!--end col-md-4-->
                                     <div class="col-md-5 col-sm-4">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="keyword" placeholder="Enter Location" id="to">
+                                            <input type="text" class="form-control" name="to" placeholder="Enter Location" id="to">
                                             
                                         </div>
                                         <!--end form-group-->

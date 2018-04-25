@@ -50,9 +50,6 @@
                         <th>No</th>
                         <th>From</th>
                         <th>To</th>
-                        <th>Time of Departure</th>
-                        <th>Duration</th>
-                        <th>Cost</th>
                         <th>Bus</th>
                         <th>Action</th>
                     </tr>
@@ -65,9 +62,6 @@
                         <td>{{ $location->name }}</td>
                         <?php $destination = App\Location::where('id', $route->to)->first(); ?>
                         <td>{{ $destination->name }}</td>
-                        <td>{{ $route->time}}</td>
-                        <td>{{ $route->duration}}</td>
-                        <td>{{ $route->amount}}</td>
                         <?php $bus = App\Bus::where('id', $route->bus_id)->first(); ?>
                         <td>{{ $bus->reg_num }}</td>
                         <td>
@@ -90,9 +84,6 @@
                         <th>No</th>
                         <th>From</th>
                         <th>To</th>
-                        <th>Time of Departure</th>
-                        <th>Duration</th>
-                        <th>Cost</th>
                         <th>Bus</th>
                         <th>Action</th>
                     </tr>

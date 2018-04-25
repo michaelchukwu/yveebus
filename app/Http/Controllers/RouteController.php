@@ -29,10 +29,10 @@ class RouteController extends Controller
      */
     public function create()
     {
-        $locations = Location::where('parent', 0)->get();
-        $sublocations = Location::where('parent', '>', 0)->get();
+        $location = Location::where('parent', 0)->get();
+        $sublocation = Location::where('parent', '>', 0)->get();
         $bus = Bus::get();
-        return view('routes.create',compact('locations', 'bus', 'sublocations'));
+        return view('routes.create',compact('location', 'bus', 'sublocation'));
     }
 
     /**
@@ -46,9 +46,6 @@ class RouteController extends Controller
         $this->validate($request, [
             'from' => 'required',
             'to' => 'required|different:from',
-            'time' => 'required',
-            'duration' => 'required',
-            'amount' => 'required',
             'bus_id' => 'required'            
         ]);
 

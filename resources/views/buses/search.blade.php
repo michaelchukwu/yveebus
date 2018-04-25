@@ -30,7 +30,7 @@
                         @endif
                         @foreach ($data as $key => $route)
                         <div class="item item-row" data-id="1" data-latitude="40.72807182" data-longitude="-73.85735035">
-                            <figure class="ribbon">&#8358;{{ $route->amount}}</figure>
+                            <figure class="ribbon">&#8358;{{-- $route->amount --}}</figure>
                             <?php $seats = DB::table('seats')->where('bus_id', $route->bus_id)->where('free',0)->count(); ?>
                             @if ($seats > 0)
                             <a href="{{ route('trip',$route->id) }}">
@@ -38,7 +38,7 @@
                             <a href="#">
                             @endif
                                 <div class="image bg-transfer">
-                                    <figure>Leaves: {{ $route->time}} </figure>
+                                    <figure>Leaves: {{-- $route->time --}} </figure>
                                     <img src="assets/img/items/1.jpg" alt="">
                                 </div>
                                 <!--end image-->
@@ -47,7 +47,7 @@
                                     <?php $location = App\Location::where('id', $route->from)->first(); ?>
                                     <?php $destination = App\Location::where('id', $route->to)->first(); ?>
                                     <h3>{{ $location->name }} - {{ $destination->name }}</h3>
-                                    <h4>{{ $route->duration}} mins</h4>
+                                    <h4>{{-- $route->duration --}} mins</h4>
                                     
                                     <div class="label label-default">
                                            @if($seats > 0)

@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/activate', 'ActivationController@index')->name('activate');
 Route::post('/activate', 'ActivationController@activate');
 Route::post('/available', 'BusController@searchBus')->name('available');
+Route::post('/sublocation', 'LocationController@sublocation')->name('sublocation');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/home', 'HomeController@index')->name('home');

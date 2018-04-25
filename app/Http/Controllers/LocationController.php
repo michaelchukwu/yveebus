@@ -126,4 +126,29 @@ class LocationController extends Controller
         return redirect()->route('locations.index')
                         ->with('success','Location deleted successfully');
     }
+    /**
+     * Gets the sublocations)(bus stops)
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return Response
+     */
+    public function sublocation(Request $request)
+    {
+                // validating the entries
+                //add different:from to code.
+        $this->validate($request, [
+            'from' => 'required',
+            'to' => 'required'
+        ]);
+
+        $input = $request->all();
+            // dd($input['from']);
+        $from = Location::select('id')->where('name', $input['from'])->first();
+        $to = Location::select('id')->where('name', $input['to'])->first();
+        $from = Location::where('parent',$from->id)->get();
+        $to = Location::where('parent', $to->id)->get();
+        // return response()->json(array('routes'=>$routes), 200);
+        
+        return view('locations.sublocations', compact('from', 'to'));
+    }
 }

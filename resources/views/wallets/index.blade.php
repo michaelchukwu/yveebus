@@ -43,7 +43,7 @@
                         <div class="form inputs-underline">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                @if($wallet->first())
+                            @if($wallet->first())
                                     <strong>Wallet ID:</strong>
                                     {{ $wallet[0]->id }}
                             </div>
@@ -51,9 +51,6 @@
                                     <strong>Balance:</strong>
                                     &#8358;{{ $wallet[0]->amount }}
                             </div>
-                            @else
-                                <a href="wallet/create" type="button" class="btn btn-primary width-100">Create Wallet</a>
-                            @endif
                             <!--end form-group-->
                             <div class="form-group">
                                 <label for="cost">Credit Wallet:</label>
@@ -63,6 +60,11 @@
                                 <button type="submit" id="submitAmount" class="btn btn-primary width-100" data-toggle="modal" data-target="#myModal">Add</button>
                             </div>
                             <!--end form-group-->
+                            @else
+                            <span>You do not have a wallet yet</span>
+                                <a href="wallet/create" type="button" class="btn btn-primary width-100">Create Wallet</a>
+                            @endif
+                            
                         </div>
                     </section>
                 </div>

@@ -65,9 +65,11 @@ class BusController extends Controller
 
         $input = $request->all();
             // dd($input['from']);
+        $from = Location::select('id')->where('name', $input['from'])->first();
+        $to = Location::select('id')->where('name', $input['to'])->first();
         $data = DB::table('routes')
-        ->where('from', $input['from'])
-        ->where('to', $input['to'])
+        ->where('from', $from->id)
+        ->where('to', $to->id)
         ->where('active', 1)
         ->get();
         $location = Location::get();
@@ -75,6 +77,7 @@ class BusController extends Controller
         $trips = Trip::where('user_id', Auth::user()->id)
                         ->latest()->limit(3)->get();
         // return response()->json(array('routes'=>$routes), 200);
+        
         return view('buses.search', compact('data', 'location', 'trips'));
     }
     public function bookBus(Request $request)
@@ -120,12 +123,19 @@ class BusController extends Controller
         $payment = new PaymentController();
         $paymentdone = $payment->recordCharge($amount2debit);
         // create a trip
+        $input['from'] = 1;
+        $input['to'] = 2;
+        $input['duration'] = 23;
+        $input['distance'] = 45;              
         $trip = new Trip();
         $trip->user_id = Auth::user()->id;
         $trip->driver_id = 2;
         //return payment id;
         $trip->payment_id = $paymentdone;
-        $trip->route_id = $input['route_id'];
+        $trip->from = $input['from'];
+        $trip->to = $input['to'];
+        $trip->duration = $input['duration'];
+        $trip->distance = $input['distance'];
         $trip->bus_id = $input['bus_id'];
         $trip->code = $this->generateTicketCode();
         $trip->completed = 0;
@@ -146,7 +156,7 @@ class BusController extends Controller
         //         ->update(['free'=> 1]);
         // A seat at tis point is taken... we shall return
         // return a ticket and estimated time of bus arrival
-        $trip->time = Route::where('id', $trip->route_id)->first()->time;
+        $trip->time = 777;
         // send the time for a countdown
         return view('buses.booked', compact('trip'));
         
