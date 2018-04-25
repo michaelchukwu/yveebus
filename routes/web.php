@@ -51,6 +51,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::resource('roles','RoleController');
         Route::get('/bus', 'BusController@index')->name('bus');
         Route::get('/bus/create', 'BusController@create')->name('buses.create');
+        Route::post('/bus/create', 'BusController@store')->name('buses.store');
         Route::get('/bus/edit/{id}', 'BusController@edit')->name('buses.edit');
         Route::delete('/bus/{id}', 'BusController@destroy')->name('buses.destroy');
         Route::patch('/bus/{id}', 'BusController@update')->name('buses.update');

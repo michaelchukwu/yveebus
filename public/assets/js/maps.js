@@ -551,9 +551,23 @@ function autoComplete(map, marker){
         if( !map ){
             map = new google.maps.Map(document.getElementById("address-autocomplete"));
         }
+        var abujaBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(8.960638, 7.244617),
+            new google.maps.LatLng(9.151858, 7.500049)
+        );
         var input = document.getElementById('address-autocomplete');
-        var autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.bindTo('bounds', map);
+        var options = {
+            // types: ['(cities)'],
+            bounds: abujaBounds,
+            // componentRestrictions: {
+            //     country: 'ng'
+            // },
+            // strictBounds: true
+        };
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+        // autocomplete.bindTo('bounds', map);
+        // autocomplete.setOptions({strictBounds : true});
+        // autocomplete.setTypes('cities');
         google.maps.event.addListener(autocomplete, 'place_changed', function() {
             var place = autocomplete.getPlace();
             if (!place.geometry) {

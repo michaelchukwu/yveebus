@@ -77,6 +77,7 @@
                         <th>Action</th>
                     </tr>
                 </tfoot>
+                {!! $locations->render() !!}
             </table>
         </div>
     </div>
@@ -84,7 +85,7 @@
 
             </div>
 
-{!! $locations->render() !!}
+
 @endsection
 @section('scripts')
         <script src="{{ asset('admin/assets/libs/jquery/jquery.min.js') }}"></script>
@@ -103,4 +104,7 @@
         <script src="{{ asset('admin/assets/plugins/jquery-datatables/js/dataTables.bootstrap.js') }}"></script>
         <script src="{{ asset('admin/assets/plugins/jquery-select2/select2.min.js') }}"></script>
         <script src="{{ asset('admin/js/tables-data-tables.js') }}"></script>
+
+
+
 @endsection

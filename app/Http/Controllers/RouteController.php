@@ -29,9 +29,10 @@ class RouteController extends Controller
      */
     public function create()
     {
-        $location = Location::get();
+        $locations = Location::where('parent', 0)->get();
+        $sublocations = Location::where('parent', '>', 0)->get();
         $bus = Bus::get();
-        return view('routes.create',compact('location', 'bus'));
+        return view('routes.create',compact('locations', 'bus', 'sublocations'));
     }
 
     /**

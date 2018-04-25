@@ -182,4 +182,21 @@ class BusController extends Controller
     {
         return view('buses.create');
     }
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'seats' => 'required',
+            'reg_num' => 'required|unique:buses,reg_num',
+        ]);
+
+
+        $bus = new Bus();
+        $bus->seats = $request->input('seats');
+        $bus->reg_num = $request->input('reg_num');
+        $bus->save();
+
+
+        return redirect()->route('bus')
+                        ->with('success','Bus Added successfully');
+    }
 }

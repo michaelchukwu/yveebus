@@ -24,11 +24,8 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-4">
                                         <div class="form-group">
-                                            <select class="form-control selectpicker" name="from">
-                                                @foreach($location as $key=>$value)
-                                                    <option value="{!! $value->id !!}"> {!! $value->name !!} - {!! $value->code !!}</option>
-                                                @endforeach
-                                            </select>
+                                            <input type="text" class="form-control" name="keyword" placeholder="Enter Location" id="from">
+                                            
                                             {{--  <input type="text" class="form-control" name="keyword" placeholder="Enter Location" id="address-autocomplete">  --}}
                                         </div>
                                         <!--end form-group-->
@@ -36,11 +33,8 @@
                                     <!--end col-md-4-->
                                     <div class="col-md-5 col-sm-4">
                                         <div class="form-group">
-                                            <select class="form-control selectpicker" name="to">
-                                                @foreach($location as $key=>$value)
-                                                    <option value="{!! $value->id !!}"> {!! $value->name !!} - {!! $value->code !!}</option>
-                                                @endforeach
-                                            </select>
+                                            <input type="text" class="form-control" name="keyword" placeholder="Enter Location" id="to">
+                                            
                                         </div>
                                         <!--end form-group-->
                                     </div>

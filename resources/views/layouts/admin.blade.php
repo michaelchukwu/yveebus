@@ -296,6 +296,23 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-dropdown">
+                            <a href="#" title="Roles">
+                                <i class="fa fa-lg fa-fw fa-bus"></i> Buses
+                            </a>
+                            <ul class="nav-sub">
+                                <li>
+                                    <a href="/bus" title="Buses">
+                                        <i class="fa fa-fw fa-caret-right"></i> All Buses
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/bus/create" title="Create Bus">
+                                        <i class="fa fa-fw fa-caret-right"></i> Create Bus
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
             </aside>

@@ -27,7 +27,8 @@ class LocationController extends Controller
      */
     public function create()
     {
-        return view('locations.create');
+        $locations = Location::where('parent', 0)->get();
+        return view('locations.create', compact('locations'));
     }
 
     /**
@@ -47,6 +48,13 @@ class LocationController extends Controller
         $location = new Location();
         $location->name = $request->input('name');
         $location->code = $request->input('code');
+        $location->place_id = $request->input('place_id');
+        if($request->input('parent') == NULL){
+            $location->parent = 0;
+        }else
+        {
+             $location->parent = $request->input('parent');
+        }
         $location->save();
 
 

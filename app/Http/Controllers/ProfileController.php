@@ -70,7 +70,13 @@ class ProfileController extends Controller
                         ->with('success','Profile Changes Saved');
     }
 
-
+    public function history()
+    {
+        //get every single history detail and put them together
+        //payment history
+        //trips history
+        return view('users.history');
+    }
     /**
      * Remove the specified resource from storage.
      *
