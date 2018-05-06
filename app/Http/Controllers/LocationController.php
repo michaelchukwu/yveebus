@@ -44,11 +44,14 @@ class LocationController extends Controller
             'code' => 'required|unique:locations,code',
         ]);
 
-
+        $geometry = explode(',', rtrim(substr($request->input('geometry'),1),')'));
+        // dd(floatval($geometry[0]));
         $location = new Location();
         $location->name = $request->input('name');
         $location->code = $request->input('code');
         $location->place_id = $request->input('place_id');
+        $location->lat = floatval($geometry[1]);
+        $location->lng = floatval($geometry[0]);
         if($request->input('parent') == NULL){
             $location->parent = 0;
         }else
@@ -136,19 +139,25 @@ class LocationController extends Controller
     {
                 // validating the entries
                 //add different:from to code.
-        $this->validate($request, [
-            'from' => 'required',
-            'to' => 'required'
-        ]);
+        try {
+            $this->validate($request, [
+                'from' => 'required',
+                'to' => 'required'
+            ]);
 
-        $input = $request->all();
-            // dd($input['from']);
-        $from = Location::select('id')->where('name', $input['from'])->first();
-        $to = Location::select('id')->where('name', $input['to'])->first();
-        $from = Location::where('parent',$from->id)->get();
-        $to = Location::where('parent', $to->id)->get();
-        // return response()->json(array('routes'=>$routes), 200);
-        
-        return view('locations.sublocations', compact('from', 'to'));
+            $input = $request->all();
+                // dd($input['from']);
+            $from = Location::select('id')->where('name', $input['from'])->first();
+            $to = Location::select('id')->where('name', $input['to'])->first();
+            $from = Location::where('parent',$from->id)->get();
+            $to = Location::where('parent', $to->id)->get();
+            // return response()->json(array('routes'=>$routes), 200);
+            $location_from = $input['from'];
+            $location_to = $input['to'];
+            return view('locations.sublocations', compact('from', 'to', 'location_from', 'location_to'));
+        }
+        catch (\Exception $e) {
+            return redirect()->back()->with('error', 'No Route');
+        }
     }
 }

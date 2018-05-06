@@ -1,7 +1,6 @@
 @extends('layouts.new')
 
 @section('content')
-
     <div id="page-content">
         <div class="hero-section has-background full-screen">
             <div class="wrapper">
@@ -12,11 +11,22 @@
                             <h2>Routes All over, at the best rates</h2>
                         </div>
                     </div>
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                @if (session('status'))
+                                    <div class="alert alert-success">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
+                                @if (session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
+                            </div>
                         </div>
-                    @endif
+                    </div>
                     <div class="form search-form horizontal no-background">
                         <div class="container">
                             <form action="/sublocation" method="POST">
@@ -24,7 +34,7 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-4">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="from" placeholder="Enter Location" id="from">
+                                            <input type="text" class="form-control" name="from" placeholder="Enter Location" id="from" onchange="fetch_select()">
                                             
                                             {{--  <input type="text" class="form-control" name="keyword" placeholder="Enter Location" id="address-autocomplete">  --}}
                                         </div>
@@ -1095,4 +1105,34 @@
         <!--end block-->
     </div>
     <!--end page-content-->
+@endsection
+@section('scripts')
+<script type="text/javascript">
+    function fetch_select(val)
+    {
+        val = document.getElementById("from").value;
+        $.ajax({
+            type: 'post',
+            url: '/destination',
+            data: {
+                get_option:val, _token: '{{csrf_token()}}'
+            },
+            success: function (response) {
+                // document.getElementById("new_select").innerHTML=response; 
+                console.log(response);
+                $( "#to" ).autocomplete({source: response});
+            },
+             error: function (response, textStatus, errorThrown) {
+                console.log(response);
+
+            },
+        });
+    }
+    function fill_destination(data)
+    {
+        // <?php //DB::table('locations')->where('id', data)?>
+        var to = data;
+        
+    }
+</script>
 @endsection

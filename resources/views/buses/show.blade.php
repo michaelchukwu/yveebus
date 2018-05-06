@@ -26,38 +26,48 @@
                     @endif
                     <div class="form-group">
                         <strong>From:</strong>
-                        <?php $location = App\Location::where('id', $route->from)->first(); ?>
-                        {{ $location->name }} - {{ $location->code}}
+                        <?php //$location = App\Location::where('id', $route->from)->first(); ?>
+                        {{-- {{ $location->name }} - {{ $location->code}} --}}
+                        {{  $data['from']}}
                     </div>
                     <div class="form-group">
                         <strong>To:</strong>
-                        <?php $destination = App\Location::where('id', $route->to)->first(); ?>
-                            {{ $destination->name }} - {{ $destination->code }}
+                        <?php //$destination = App\Location::where('id', $route->to)->first(); ?>
+                            {{-- {{ $destination->name }} - {{ $destination->code }} --}}
+                            {{  $data['to']}}
                     </div>
                     <div class="form-group">
                         <strong>Departure Time:</strong>
-                        {{ $route->time }}
+                        {{-- {{ $route->time }} --}}
                     </div>
                     <div class="form-group">
                         <strong>Duration:</strong>
-                        {{ $route->duration }} mins
+                        {{-- {{ $route->duration }} mins --}}
+                        {{ $data['duration']}}
                     </div>
                     <div class="form-group">
                         <strong>Amount:</strong>
-                        {{ $route->amount }}
+                        {{-- {{ $route->amount }} --}}
+                        {{ (int)($data['distance_value']/1000)*20}}
                     </div>
                     <div class="form-group">
-                        <strong>Bus Reg Number:</strong>
-                        <?php $bus = App\Bus::where('id', $route->bus_id)->first(); ?>
-                        {{ $bus->reg_num }}
+                        {{-- <strong>Bus Reg Number:</strong> --}}
+                        <?php //$bus = App\Bus::where('id', $route->bus_id)->first(); ?>
+                        {{-- {{ $bus->reg_num }} --}}
                     </div>
                     {!! Form::open(array('route' => 'book','method'=>'POST', 'class'=>'form inputs-underline')) !!}
                             <div class="form-group width-30">
                                 {!! Form::text('promo_code',null,array('placeholder'=>'Promo Code')) !!}
                             </div><br>
-                            {!! Form::hidden('route_id', $route->id) !!}
-                            {!! Form::hidden('amount', $route->amount) !!}
-                            {!! Form::hidden('bus_id', $route->bus_id) !!}
+                            {!! Form::hidden('from', $data['from']) !!}
+                            {!! Form::hidden('amount', (int)($data['distance_value']/1000)*20) !!}
+                            {!! Form::hidden('to', $data['to']) !!}
+                            {!! Form::hidden('duration', $data['duration']) !!}
+                            {!! Form::hidden('distance', $data['distance']) !!}                                                        
+                            {!! Form::hidden('distance_value', $data['distance_value']) !!}                                                        
+                            {!! Form::hidden('duration_value', $data['duration_value']) !!}                                                        
+                            {!! Form::hidden('from_id', $data['from_id']) !!}                                                        
+                            {!! Form::hidden('to_id', $data['to_id']) !!}                                                        
                             <div class="form-group">
                                 {!! Form::submit('Confirm Trip', array('class'=>'btn btn-primary')) !!}
                             </div>

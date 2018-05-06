@@ -24,11 +24,13 @@ Route::post('/activate', 'ActivationController@activate');
 Route::post('/available', 'BusController@searchBus')->name('available');
 Route::post('/sublocation', 'LocationController@sublocation')->name('sublocation');
 
+
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::post('/destination', 'HomeController@get_destination')->name('destination');
     Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
     Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
-    Route::get('trip/{id}', 'BusController@showBus')->name('trip');
+    Route::post('trip', 'BusController@showBus')->name('trip');
     Route::post('trip/book', 'BusController@bookBus')->name('book');
 
     Route::get('wallet', 'WalletController@index')->name('wallet');

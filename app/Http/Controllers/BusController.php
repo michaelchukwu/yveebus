@@ -57,23 +57,19 @@ class BusController extends Controller
 
     public function searchBus(Request $request){
 
-        // validating the entries
-        $this->validate($request, [
-            'from' => 'required',
-            'to' => 'required|different:from'
-        ]);
-
         $input = $request->all();
-            // dd($input['from']);
-        $from = Location::select('id')->where('name', $input['from'])->first();
-        $to = Location::select('id')->where('name', $input['to'])->first();
-        $data = DB::table('routes')
-        ->where('from', $from->id)
-        ->where('to', $to->id)
-        ->where('active', 1)
-        ->get();
-        $location = Location::get();
+        // $from = Location::select('id')->where('name', $input['from'])->first();
+        // $to = Location::select('id')->where('name', $input['to'])->first();
+        // $data = DB::table('routes')
+        // ->where('from', $from->id)
+        // ->where('to', $to->id)
+        // ->where('active', 1)
+        // ->get();
+        // $location = Location::get();
         //
+        $data->from = $input['from'];
+        $data->from = $input['from'];
+        $data->from = $input['from'];
         $trips = Trip::where('user_id', Auth::user()->id)
                         ->latest()->limit(3)->get();
         // return response()->json(array('routes'=>$routes), 200);
@@ -123,19 +119,20 @@ class BusController extends Controller
         $payment = new PaymentController();
         $paymentdone = $payment->recordCharge($amount2debit);
         // create a trip
-        $input['from'] = 1;
-        $input['to'] = 2;
-        $input['duration'] = 23;
-        $input['distance'] = 45;              
+        // $input['from'] = 1;
+        // $input['to'] = 2;
+        // $input['duration'] = 23;
+        // dd($input);
+        $input['bus_id'] = 1;              
         $trip = new Trip();
         $trip->user_id = Auth::user()->id;
         $trip->driver_id = 2;
         //return payment id;
         $trip->payment_id = $paymentdone;
-        $trip->from = $input['from'];
-        $trip->to = $input['to'];
-        $trip->duration = $input['duration'];
-        $trip->distance = $input['distance'];
+        $trip->from = $input['from_id'];
+        $trip->to = $input['to_id'];
+        $trip->duration = $input['duration_value'];
+        $trip->distance = $input['distance_value'];
         $trip->bus_id = $input['bus_id'];
         $trip->code = $this->generateTicketCode();
         $trip->completed = 0;
@@ -161,10 +158,13 @@ class BusController extends Controller
         return view('buses.booked', compact('trip'));
         
     }
-    public function showBus($id)
+    public function showBus(Request $request)
     {   
-        $route = Route::find($id);
-        return view('buses.show', compact('route'));
+        // $route = Route::find($id);
+        
+        $data = $request->all();
+        // dd($data);
+        return view('buses.show', compact('data'));
     }
 
     //generate the ticket code

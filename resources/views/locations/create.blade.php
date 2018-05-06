@@ -124,6 +124,9 @@
                                 <input class="form-control" type="text" name="place_id" id="place_id" value="" required>
                             </div>
                         </div>
+                        
+                                <input class="form-control" type="hidden" name="geometry" id="geometry" value="" required>
+                            
                         <div class="form-group">
                             <label class="control-label col-sm-4">Parent</label>
 
@@ -230,6 +233,7 @@
         var place_id_form = document.getElementById('place_id');
         var place_name_form = document.getElementById('place_name');
         var place_code_form = document.getElementById('place_code');
+        var place_geometry_form = document.getElementById('geometry');
         infowindow.setContent(infowindowContent);
         var marker = new google.maps.Marker({
           map: map
@@ -266,6 +270,7 @@
           infowindow.open(map, marker);
           place_id_form.value = place.place_id;
           place_name_form.value = place.name;
+          place_geometry_form.value = place.geometry.location;
           upper = place.name.substring(0,3);
           place_code_form.value = upper.toUpperCase();
 

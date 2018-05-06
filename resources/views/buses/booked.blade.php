@@ -31,7 +31,7 @@
                         <hr>
                         <div class="content">
                             <div class="form-group">
-                                <strong id="time-up">Your bus arrives at: {{ $trip->time }}</strong>
+                                <strong id="time-up">Your bus will be at the busstop soon {{-- $trip->time --}}</strong>
                                 <div id="tier"></div>
                                     Ticket No: {{ $trip->code }}
                             </div>

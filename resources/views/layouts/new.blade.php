@@ -121,7 +121,7 @@
 <script type="text/javascript" src="{{ asset('assets/js/jquery-migrate-1.2.1.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
+{{-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script> --}}
 <script type="text/javascript" src="{{ asset('assets/js/richmarker-compiled.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/markerclusterer_packed.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/infobox.js') }}"></script>
@@ -141,14 +141,10 @@
   <script>
   $( function() {
     var from = <?php echo $from ?? '' ?>;
-    var to = <?php echo $to ?? '' ?>;
     $( "#from" ).autocomplete({
       source: from
     });
-    $( "#to" ).autocomplete({
-      source: to
     });
-  } );
   </script>
     <script src="/user/assets/js/jquery.seat-charts.min.js"></script>    
         <script>
@@ -185,4 +181,6 @@
 				});
 			});
 		</script>
+        @yield('scripts');
 </body>
+</html>

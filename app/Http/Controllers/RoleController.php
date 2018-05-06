@@ -49,7 +49,6 @@ class RoleController extends Controller
             'name' => 'required|unique:roles,name',
             'display_name' => 'required',
             'description' => 'required',
-            'permission' => 'required',
         ]);
 
 
@@ -58,11 +57,12 @@ class RoleController extends Controller
         $role->display_name = $request->input('display_name');
         $role->description = $request->input('description');
         $role->save();
-
-
-        foreach ($request->input('permission') as $key => $value) {
-            $role->attachPermission($value);
-        }
+        
+        // $d = $request->input('permission');
+        // $d = array(1);
+        // foreach ($d as $key => $value) {
+        //     $role->attachPermission($value);
+        // }
 
 
         return redirect()->route('roles.index')
@@ -116,7 +116,6 @@ class RoleController extends Controller
         $this->validate($request, [
             'display_name' => 'required',
             'description' => 'required',
-            'permission' => 'required',
         ]);
 
 
