@@ -46,9 +46,14 @@
                         {{ $data['duration']}}
                     </div>
                     <div class="form-group">
-                        <strong>Amount:</strong>
+                        <strong>Estimated Fare:</strong>
                         {{-- {{ $route->amount }} --}}
-                        {{ (int)($data['distance_value']/1000)*20}}
+                        {{ (int)(($data['distance_value']/1000)*(int)$data['price_per_km'][0])+$data['base_amount'][0]}}
+                    </div>
+                    <div class="form-group">
+                        <strong>Base Fare:</strong>
+                        {{-- {{ $route->amount }} --}}
+                        {{str_replace('"', '', $data['base_amount'])}}NGN
                     </div>
                     <div class="form-group">
                         {{-- <strong>Bus Reg Number:</strong> --}}
@@ -60,7 +65,7 @@
                                 {!! Form::text('promo_code',null,array('placeholder'=>'Promo Code')) !!}
                             </div><br>
                             {!! Form::hidden('from', $data['from']) !!}
-                            {!! Form::hidden('amount', (int)($data['distance_value']/1000)*20) !!}
+                            {!! Form::hidden('amount', (int)(($data['distance_value']/1000)*(int)$data['price_per_km'][0])+$data['base_amount'][0]) !!}
                             {!! Form::hidden('to', $data['to']) !!}
                             {!! Form::hidden('duration', $data['duration']) !!}
                             {!! Form::hidden('distance', $data['distance']) !!}                                                        

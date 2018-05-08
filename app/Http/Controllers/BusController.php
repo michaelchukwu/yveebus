@@ -156,26 +156,28 @@ class BusController extends Controller
         $trip->time = 777;
         // send the time for a countdown
         return view('buses.booked', compact('trip'));
-        
     }
+
     public function showBus(Request $request)
     {   
         // $route = Route::find($id);
-        
         $data = $request->all();
+        $data['base_amount'] = DB::table('amount')->pluck('base_amount');
+        $data['price_per_km'] = DB::table('amount')->pluck('price_per_km');
+        
         // dd($data);
         return view('buses.show', compact('data'));
     }
 
     //generate the ticket code
     function generateTicketCode(){
-    $an = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    $su = strlen($an) - 1;
-    return substr($an, rand(0, $su), 1).
-            substr($an, rand(0, $su), 1) .
-            substr($an, rand(0, $su), 1) .
-            substr($an, rand(0, $su), 1) .
-            substr($an, rand(0, $su), 1) .
+        $an = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $su = strlen($an) - 1;
+        return substr($an, rand(0, $su), 1).
+                substr($an, rand(0, $su), 1) .
+                substr($an, rand(0, $su), 1) .
+                substr($an, rand(0, $su), 1) .
+                substr($an, rand(0, $su), 1) .
             substr($an, rand(0, $su), 1);
     }
 

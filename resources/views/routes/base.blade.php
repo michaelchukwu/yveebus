@@ -91,7 +91,7 @@
 <div class="container-fluid-md">
     <div class="row">
         <div class="col-md-6">
-            {!! Form::open(array('route' => 'locations.store','method'=>'POST', 'class'=>'form-horizontal form-bordered')) !!} 
+            {!! Form::open(array('route' => 'routes.base.set','method'=>'POST', 'class'=>'form-horizontal form-bordered')) !!} 
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">Add Location</h4>
@@ -103,48 +103,34 @@
                         </div>
                     </div>
                     <div class="panel-body">
+                        <span class="bg-danger">
+                            Attention: you can only have one base amount and price per km at a time.<br>
+                        </span>
+                        <span>
+                            @foreach($amount as $price)
+                                <strong>Current base amount</strong>: {{$price->base_amount}}<br>
+                                <strong>Current base amount</strong>: {{$price->price_per_km}}<br>
+                            @endforeach
+                        </span>
                         <div class="form-group">
-                            <label class="control-label col-sm-4">Name</label>
+                            <label class="control-label col-sm-4">Base Amount</label>
 
                             <div class="col-sm-8">
-                                <input class="form-control" name="name" id="place_name" type="text" value="" required>
+                                <input class="form-control" name="base_amount" id="amount" type="text" value="" >
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-4">Code</label>
+                            <label class="control-label col-sm-4">Amount per km</label>
 
                             <div class="col-sm-8">
-                                <input class="form-control" type="text" id="place_code" name="code" value="" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-4">Place ID</label>
-
-                            <div class="col-sm-8">
-                                <input class="form-control" type="text" name="place_id" id="place_id" value="" required>
-                            </div>
-                        </div>
-                        
-                                <input class="form-control" type="hidden" name="geometry" id="geometry" value="" required>
-                            
-                        <div class="form-group">
-                            <label class="control-label col-sm-4">Parent</label>
-
-                            <div class="col-sm-8">
-                                <select class="form-control form-select2 select2-offscreen" data-placeholder="Choose a parent..." tabindex="-1" title="" name="parent" id="parent">
-                                    <option></option>
-                                    @foreach($locations as $location)
-                                        <option value="{!! $location->id !!}">{!! $location->name!!}</option>
-                                    @endforeach
-                                    
-                                </select>
+                                <input class="form-control" name="price_per_km" id="amount" type="text" value="" >
                             </div>
                         </div>
                     </div>
                     <div class="panel-footer">
                         <div class="form-group">
                             <div class="col-sm-offset-4 col-sm-8">
-                                <button type="submit" class="btn btn-primary">Add</button>
+                                <button type="submit" class="btn btn-primary">Set</button>
                             </div>
                         </div>
                     </div>
@@ -194,93 +180,7 @@
         <script src="{{ asset('admin/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
         <script src="{{ asset('admin/js/forms-advanced-components.js') }}"></script>
             <script>
-      // This sample uses the Place Autocomplete widget to allow the user to search
-      // for and select a place. The sample then displays an info window containing
-      // the place ID and other information about the place that the user has
-      // selected.
 
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 9.0764785, lng: 7.398574},
-          zoom: 13
-        });
-
-        
-        var abujaBounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(8.4754919, 6.9367289),
-            new google.maps.LatLng(9.2857413, 7.3364417)
-        );
-        var input = document.getElementById('pac-input');
-        var options = {
-            // types: ['(cities)'],
-            bounds: abujaBounds,
-            // componentRestrictions: {
-            //     country: 'ng'
-            // },
-            strictBounds: true
-        };
-        var autocomplete = new google.maps.places.Autocomplete(input, options);
-        autocomplete.bindTo('bounds', map);
-
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-        var infowindow = new google.maps.InfoWindow();
-        var infowindowContent = document.getElementById('infowindow-content');
-        var place_id_form = document.getElementById('place_id');
-        var place_name_form = document.getElementById('place_name');
-        var place_code_form = document.getElementById('place_code');
-        var place_geometry_form = document.getElementById('geometry');
-        infowindow.setContent(infowindowContent);
-        var marker = new google.maps.Marker({
-          map: map
-        });
-        marker.addListener('click', function() {
-          infowindow.open(map, marker);
-        });
-
-        autocomplete.addListener('place_changed', function() {
-          infowindow.close();
-          var place = autocomplete.getPlace();
-          if (!place.geometry) {
-            return;
-          }
-
-          if (place.geometry.viewport) {
-            map.fitBounds(place.geometry.viewport);
-          } else {
-            map.setCenter(place.geometry.location);
-            map.setZoom(17);
-          }
-
-          // Set the position of the marker using the place ID and location.
-          marker.setPlace({
-            placeId: place.place_id,
-            location: place.geometry.location
-          });
-          marker.setVisible(true);
-
-          infowindowContent.children['place-name'].textContent = place.name;
-          infowindowContent.children['place-id'].textContent = place.place_id;
-          infowindowContent.children['place-address'].textContent =
-              place.formatted_address;
-          infowindow.open(map, marker);
-          place_id_form.value = place.place_id;
-          place_name_form.value = place.name;
-          place_geometry_form.value = place.geometry.location;
-          upper = place.name.substring(0,3);
-          place_code_form.value = upper.toUpperCase();
-
-        });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB56zdHnTuCvhJyLLGjCpR9e8FKSiRPKYc&libraries=places&callback=initMap"
-        async defer></script>
+     
+ 
 @endsection
-<body>
-    <input id="pac-input" class="controls" type="text"
-        placeholder="Enter a location">
-</body>

@@ -259,6 +259,11 @@
                                         <i class="fa fa-fw fa-caret-right"></i> Create Route
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('routes.base') }}" title="Base Price">
+                                        <i class="fa fa-fw fa-caret-right"></i> Base Price
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-dropdown">

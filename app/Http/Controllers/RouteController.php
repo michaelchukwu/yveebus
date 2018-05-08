@@ -140,4 +140,52 @@ class RouteController extends Controller
         return redirect()->route('routes.index')
                         ->with('success','Route Deactivated successfully');
     }
+    public function setBase(Request $request)
+    { 
+        // dd($request->input('price_per_km'));
+        if(DB::table('amount')->count('id')>0)
+        {
+            // check for changing just base amount 
+            if($request->input('base_amount') == NULL){
+                DB::table('amount')->update([
+                    'price_per_km'=>$request->input('price_per_km'),
+                    'updated_at'=>now()
+                    
+                ]);
+                return redirect()->back()->with('success','Price per KM has been updated');
+            }
+            if($request->input('price_per_km') == NULL){
+                DB::table('amount')->update([
+                    'base_amount'=>$request->input('base_amount'),
+                    'updated_at'=>now()
+                    
+                ]);
+                return redirect()->back()->with('success','Base Amount has been updated');
+            }
+            // for changing just price per km
+            DB::table('amount')->update([
+                'base_amount'=>$request->input('base_amount'),
+                'price_per_km'=>$request->input('price_per_km'),
+                'active'=>1,
+                'created_at'=>now()
+                
+            ]);
+            return redirect()->back()->with('success','Amounts have been updated');
+        }
+        // add a new one and activate it
+        DB::table('amount')->insertGetId([
+            'base_amount'=>$request->input('base_amount'),
+            'price_per_km'=>$request->input('price_per_km'),
+            'active'=>1,
+            'created_at'=>now()
+        ]);
+        
+        return redirect()->back()->with('success','Amounts have been set');
+    }
+    public function getBase()
+    {
+        // get the current amount per km and base amount
+        $amount = DB::table('amount')->get();
+        return view('routes.base', compact('amount'));
+    }
 }

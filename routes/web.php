@@ -46,6 +46,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::resource('users','UserController');
         Route::resource('routes', 'RouteController');
         Route::resource('promos', 'PromoController');
+        Route::get('base/price', 'RouteController@getBase')->name('routes.base');
+        Route::post('base/price', 'RouteController@setBase')->name('routes.base.set');
+        //Route::get('base/price', 'RouteController@setBase')->name('routes.bases');
         Route::get('routes/{id}/activate', 'RouteController@activate')->name('route.activate');
         Route::get('routes/{id}/deactivate', 'RouteController@deactivate')->name('route.deactivate');
 
