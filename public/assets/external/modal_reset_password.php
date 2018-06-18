@@ -13,6 +13,7 @@ echo
         </div>
         <div class="modal-body">
             <form class="form inputs-underline" action="/password/email" method="post">
+            <input type="hidden" value="'.csrf_token().'">
                 <input type="hidden" value=>
                 <div class="form-group">
                     <label for="email">Email</label>

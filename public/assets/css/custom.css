@@ -1,0 +1,16 @@
+.home-card {
+    padding:20px 50px;
+    background: white;
+    border: solid 1px #ccc;
+}
+.home-card i {
+    font-size: 3em;
+    color: #000;
+}
+.home-card h5 {
+    font-size: 1.5em;
+}
+h1>sub{
+    font-size: 0.5em;
+    color: #e20c53;
+}

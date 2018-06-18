@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="{{ asset('assets/css/trackpad-scroll-emulator.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery.seat-charts.css')}}" type="text/css">
 
     <title>Molue Pro</title>
 
@@ -103,9 +105,9 @@
             <div class="footer-navigation">
                 <div class="container">
                     <div class="vertical-aligned-elements">
-                        <div class="element width-50">(C) 2018 Molue Pro, All right reserved</div>
+                        <div class="element width-50">&copy; 2018 Molue Pro, All rights reserved</div>
                         <div class="element width-50 text-align-right">
-                            <a href="/help-centre">help</a>
+                            <a href="/help-centre">Help</a>
                         </div>
                     </div>
                 </div>
@@ -146,7 +148,7 @@
     });
     });
   </script>
-    <script src="/user/assets/js/jquery.seat-charts.min.js"></script>    
+    <script src="{{ asset('assets/js/jquery.seat-charts.min.js') }}"></script>    
         <script>
         $(document).ready(function(){
             $('#submitAmount').attr('disabled',true);
@@ -158,29 +160,6 @@
             })
         });
     </script>
-    	<script>
-			var firstSeatLabel = 1;
-			$(document).ready(function () {
-				var sc = $('#seat-map').seatCharts({
-					map: [
-						'aa_aa'
-					],
-					seats: {
-						a: {
-							price: '<?php if(isset($route->amount)){ echo $route->amount;}?>'
-						}
-					},
-					naming: {
-						top: false,
-						left: false,
-						// column: ['A', 'B', 'C'],
-						getLabel: function(character, row, column){
-							return firstSeatLabel++;
-						}
-					}
-				});
-			});
-		</script>
         @yield('scripts');
 </body>
 </html>

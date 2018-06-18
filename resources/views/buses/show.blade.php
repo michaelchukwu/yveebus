@@ -83,8 +83,11 @@
             {{--  end col-sm-4  --}}
             <div class="col-sm-7 border-left">
                 <section>
-                    <h1>Select Seat</h1>
+                    <h1>Select Seat<sub>Alpha testing</sub></h1>
                 </section>
+                <div id="seat-map">
+
+                </div>
             </div>
             {{--  end col-md-6  --}}
         </div>
@@ -98,3 +101,55 @@
 estimated dropoff Time
 ... .
 a modal with a form call to book bus  --}}
+@section('scripts')
+<script>
+    $(document).ready(function() {
+
+        var sc = $('#seat-map').seatCharts({
+            map: [
+                'aaaaaaaaaaaa',
+                'aaaaaaaaaaaa',
+                'bbbbbbbbbb__',
+                'bbbbbbbbbb__',
+                'bbbbbbbbbbbb',
+                'cccccccccccc'
+            ],
+            seats: {
+                a: {
+                    price   : 99.99,
+                    classes : 'front-seat' //your custom CSS class
+                }
+            
+            },
+            click: function () {
+                if (this.status() == 'available') {
+                    //do some stuff, i.e. add to the cart
+                    return 'selected';
+                } else if (this.status() == 'selected') {
+                    //seat has been vacated
+                    return 'available';
+                } else if (this.status() == 'unavailable') {
+                    //seat has been already booked
+                    return 'unavailable';
+                } else {
+                    return this.style();
+                }
+            }
+        });
+
+        //Make all available 'c' seats unavailable
+        sc.find('c.available').status('unavailable');
+        
+        /*
+        Get seats with ids 2_6, 1_7 (more on ids later on),
+        put them in a jQuery set and change some css
+        */
+        sc.get(['2_6', '1_7']).node().css({
+            color: '#ffcfcf'
+        });
+        
+
+
+    });
+</script>
+@endsection

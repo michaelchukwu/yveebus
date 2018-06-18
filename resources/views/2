@@ -34,7 +34,7 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-4">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="from" placeholder="Eg Garki" id="from" onchange="fetch_select()">
+                                            <input type="text" class="form-control" name="from" placeholder="Pick Up Location" id="from" onchange="fetch_select()">
                                             
                                             {{--  <input type="text" class="form-control" name="keyword" placeholder="Enter Location" id="address-autocomplete">  --}}
                                         </div>
@@ -43,13 +43,13 @@
                                     <!--end col-md-4-->
                                     <div class="col-md-5 col-sm-4">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="to" placeholder="Eg. Gwarinpa" id="to">
+                                            <input type="text" class="form-control" name="to" placeholder="Destination" id="to">
                                             
                                         </div>
                                         <!--end form-group-->
                                     </div>
                                     <!--end col-md-4-->
-                                    <div class="col-md-3 col-sm-4" style="display:none">
+                                    <div class="col-md-3 col-sm-4" >
                                         <div class="form-group">
                                             {{--  <input type="text" class="form-control date-picker" name="min-price" placeholder="Event Date">  --}}
                                         </div>
@@ -98,7 +98,7 @@
         </div>
         <!--end hero-section-->
 
-                <section class="block">
+        <section class="block">
             <div class="container">
                 <div class="center">
                     <div class="section-title">
@@ -116,27 +116,27 @@
                             <i class="fa fa-map"></i>
                             <img src="something" alt="">
                             <h5>Select a Route</h5>
-                                <p>Select the pickup location and destination.</p>
+                                <p>Select the pickup location and destination then select the busstops nearest to the location you might be going to.</p>
                         </div>
                         <!--end item-->
                     </div>
                     <!--<end col-md-4--> 
                     <div class="col-md-4 col-sm-4">
                         <div class="home-card center">
-                            <i class="fa fa-bus"></i>
+                            <i class="fa fa-money"></i>
                             <img src="something" alt="">
-                            <h5>Pick Busstops</h5>
-                                <p>Pick Busstops that are closer to the locations you choose</p>
+                            <h5>Select a Route</h5>
+                                <p>Select the pickup location and destination then select the busstops nearest to the location you might be going to.</p>
                         </div>
                         <!--end item-->
                     </div>
                     <!--<end col-md-4-->
                     <div class="col-md-4 col-sm-4">
                         <div class="home-card center">
-                            <i class="fa fa-money"></i>
+                            <i class="fa fa-bus"></i>
                             <img src="something" alt="">
-                            <h5>Fund your Wallet</h5>
-                                <p>Make sure your wallet is funded.</p>
+                            <h5>Select a Route</h5>
+                                <p>Select the pickup location and destination then select the busstops nearest to the location you might be going to.</p>
                         </div>
                         <!--end item-->
                     </div>
@@ -146,8 +146,7 @@
             </div>
             <!--end container-->
         </section>
-
-                <!--end block-->
+        <!--end block-->
         <section class="block big-padding" >
             <div class="container">
                 <div class="vertical-aligned-elements">
@@ -177,14 +176,14 @@
             <!--end background-wrapper-->
         </section>
         <!--end block-->
-        <section class="block background-is-dark" style="display:none;">
+        <section class="block background-is-dark" >
             <div class="container">
                 <div class="section-title vertical-aligned-elements">
                     <div class="element">
-                        <h2>Saved Routes</h2>
+                        <h2>Popular Routes</h2>
                     </div>
                     <div class="element text-align-right">
-                        <a href="#page-header" class="btn btn-framed btn-rounded btn-default invisible-on-mobile">Book New Route</a>
+                        <a href="#" class="btn btn-framed btn-rounded btn-default invisible-on-mobile">Promote yours</a>
                         <div id="gallery-nav"></div>
                     </div>
                 </div>
@@ -480,45 +479,118 @@
             <!--end background-wrapper-->
         </section>
         <!--end block-->
-        <section class="block" style="display:none">
+
+        <section class="block" >
             <div class="container">
                 <div class="row">
                     <div class="col-md-9 col-sm-9">
                         <div class="section-title">
-                            <h2>In The News</h2>
+                            <h2>Recently Rated Items</h2>
                         </div>
                         <!--end section-title-->
                         <div class="row">
                             <div class="col-md-4 col-sm-4">
-                        <div class="text-element">
-                            <h4><a href="blog-detail.html">Lorem ipsum dolor sit amet</a></h4>
-                            <figure class="date">21.06.2015</figure>
-                            <p>Ut nec vulputate enim. Nulla faucibus convallis dui. Donec arcu enim, scelerisque gravida lacus vel, dignissim cursus</p>
-                            <a href="blog-detail.html"><i class="arrow_right"></i></a>
-                        </div>
-                        <!--end text-element-->
-                    </div>
-                    <!--end col-md-4-->
-                    <div class="col-md-4 col-sm-4">
-                        <div class="text-element">
-                            <h4><a href="blog-detail.html">Sed et justo ut nibh condimentum lacinia</a></h4>
-                            <figure class="date">13.06.2015</figure>
-                            <p>Donec arcu enim, scelerisque gravida lacus vel, dignissim cursus lectus. Aliquam laoreet purus in iaculis sodales. </p>
-                            <a href="blog-detail.html"><i class="arrow_right"></i></a>
-                        </div>
-                        <!--end text-element-->
-                    </div>
-                    <!--end col-md-4-->
-                    <div class="col-md-4 col-sm-4">
-                        <div class="text-element">
-                            <h4><a href="blog-detail.html">Suspendisse varius eros id enim </a></h4>
-                            <figure class="date">03.04.2015</figure>
-                            <p>Nullam nec turpis blandit, sodales risus vitae, tincidunt velit. Vestibulum ac ipsum tincidunt, vestibulum leo eget, </p>
-                            <a href="blog-detail.html"><i class="arrow_right"></i></a>
-                        </div>
-                        <!--end text-element-->
-                    </div>
-                    <!--end col-md-4-->
+                                <div class="item" data-id="2">
+                                    <a href="detail.html">
+                                        <div class="description">
+                                            <div class="label label-default">Restaurant</div>
+                                            <h3>Ironapple</h3>
+                                            <h4>4209 Glenview Drive</h4>
+                                        </div>
+                                        <!--end description-->
+                                        <div class="image bg-transfer">
+                                            <img src="assets/img/items/2.jpg" alt="">
+                                        </div>
+                                        <!--end image-->
+                                    </a>
+                                    <div class="additional-info">
+                                        <div class="rating-passive" data-rating="3">
+                                            <span class="stars"></span>
+                                            <span class="reviews">13</span>
+                                        </div>
+                                        <div class="controls-more">
+                                            <ul>
+                                                <li><a href="#">Add to favorites</a></li>
+                                                <li><a href="#">Add to watchlist</a></li>
+                                                <li><a href="#" class="quick-detail">Quick detail</a></li>
+                                            </ul>
+                                        </div>
+                                        <!--end controls-more-->
+                                    </div>
+                                    <!--end additional-info-->
+                                </div>
+                                <!--end item-->
+                            </div>
+                            <!--<end col-md-4-->
+                            <div class="col-md-5 col-sm-5">
+                                <div class="item" data-id="3">
+                                    <figure class="ribbon">Top</figure>
+                                    <a href="detail.html">
+                                        <div class="description">
+                                            <figure>Starts at: 19:00</figure>
+                                            <div class="label label-default">Event</div>
+                                            <h3>Food Festival</h3>
+                                            <h4>840 My Drive</h4>
+                                        </div>
+                                        <!--end description-->
+                                        <div class="image bg-transfer">
+                                            <img src="assets/img/items/4.jpg" alt="">
+                                        </div>
+                                        <!--end image-->
+                                    </a>
+                                    <div class="additional-info">
+                                        <figure class="circle" title="Featured"><i class="fa fa-check"></i></figure>
+                                        <div class="rating-passive" data-rating="5">
+                                            <span class="stars"></span>
+                                            <span class="reviews">12</span>
+                                        </div>
+                                        <div class="controls-more">
+                                            <ul>
+                                                <li><a href="#">Add to favorites</a></li>
+                                                <li><a href="#">Add to watchlist</a></li>
+                                                <li><a href="#" class="quick-detail">Quick detail</a></li>
+                                            </ul>
+                                        </div>
+                                        <!--end controls-more-->
+                                    </div>
+                                    <!--end additional-info-->
+                                </div>
+                                <!--end item-->
+                            </div>
+                            <!--<end col-md-5-->
+                            <div class="col-md-3 col-sm-3">
+                                <div class="item" data-id="4">
+                                    <a href="detail.html">
+                                        <div class="description">
+                                            <div class="label label-default">Lounge</div>
+                                            <h3>Cosmopolit</h3>
+                                            <h4>2896 Ripple Street</h4>
+                                        </div>
+                                        <!--end description-->
+                                        <div class="image bg-transfer">
+                                            <img src="assets/img/items/5.jpg" alt="">
+                                        </div>
+                                        <!--end image-->
+                                    </a>
+                                    <div class="additional-info">
+                                        <div class="rating-passive" data-rating="5">
+                                            <span class="stars"></span>
+                                            <span class="reviews">43</span>
+                                        </div>
+                                        <div class="controls-more">
+                                            <ul>
+                                                <li><a href="#">Add to favorites</a></li>
+                                                <li><a href="#">Add to watchlist</a></li>
+                                                <li><a href="#" class="quick-detail">Quick detail</a></li>
+                                            </ul>
+                                        </div>
+                                        <!--end controls-more-->
+                                    </div>
+                                    <!--end additional-info-->
+                                </div>
+                                <!--end item-->
+                            </div>
+                            <!--<end col-md-3-->
                         </div>
                         <!--end row-->
                     </div>
@@ -559,6 +631,50 @@
             <!--end container-->
         </section>
         <!--end block-->
+        <section class="block" >
+            <div class="container">
+                <div class="section-title">
+                    <h2>From the Blog</h2>
+                </div>
+                <!--end section-title-->
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="text-element">
+                            <h4><a href="blog-detail.html">Lorem ipsum dolor sit amet</a></h4>
+                            <figure class="date">21.06.2015</figure>
+                            <p>Ut nec vulputate enim. Nulla faucibus convallis dui. Donec arcu enim, scelerisque gravida lacus vel, dignissim cursus</p>
+                            <a href="blog-detail.html"><i class="arrow_right"></i></a>
+                        </div>
+                        <!--end text-element-->
+                    </div>
+                    <!--end col-md-4-->
+                    <div class="col-md-4 col-sm-4">
+                        <div class="text-element">
+                            <h4><a href="blog-detail.html">Sed et justo ut nibh condimentum lacinia</a></h4>
+                            <figure class="date">13.06.2015</figure>
+                            <p>Donec arcu enim, scelerisque gravida lacus vel, dignissim cursus lectus. Aliquam laoreet purus in iaculis sodales. </p>
+                            <a href="blog-detail.html"><i class="arrow_right"></i></a>
+                        </div>
+                        <!--end text-element-->
+                    </div>
+                    <!--end col-md-4-->
+                    <div class="col-md-4 col-sm-4">
+                        <div class="text-element">
+                            <h4><a href="blog-detail.html">Suspendisse varius eros id enim </a></h4>
+                            <figure class="date">03.04.2015</figure>
+                            <p>Nullam nec turpis blandit, sodales risus vitae, tincidunt velit. Vestibulum ac ipsum tincidunt, vestibulum leo eget, </p>
+                            <a href="blog-detail.html"><i class="arrow_right"></i></a>
+                        </div>
+                        <!--end text-element-->
+                    </div>
+                    <!--end col-md-4-->
+                </div>
+                <!--end row-->
+            </div>
+            <!--end container-->
+        </section>
+        <!--end block-->
+
         <div class="container" >
             <hr>
         </div>
@@ -571,19 +687,19 @@
                 </div>
                 <div class="logos">
                     <div class="logo">
-                        <a href="#"><img src="assets/img/legalhub.jpeg" alt="" width="100"></a>
+                        <a href="#"><img src="assets/img/logo-1.png" alt=""></a>
                     </div>
                     <div class="logo">
-                        <a href="#"><img src="assets/img/legalhub.jpeg" alt="" width="100"></a>
+                        <a href="#"><img src="assets/img/logo-2.png" alt=""></a>
                     </div>
                     <div class="logo">
-                        <a href="#"><img src="assets/img/legalhub.jpeg" alt="" width="100"></a>
+                        <a href="#"><img src="assets/img/logo-3.png" alt=""></a>
                     </div>
                     <div class="logo">
-                        <a href="#"><img src="assets/img/legalhub.jpeg" alt="" width="100"></a>
+                        <a href="#"><img src="assets/img/logo-4.png" alt=""></a>
                     </div>
                     <div class="logo">
-                        <a href="#"><img src="assets/img/legalhub.jpeg" alt="" width="100"></a>
+                        <a href="#"><img src="assets/img/logo-5.png" alt=""></a>
                     </div>
                 </div>
                 <!--/ .logos-->

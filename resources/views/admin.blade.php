@@ -68,7 +68,7 @@
                             {{ $trips }}
                         </div>
                         <div class="icon">
-                            <i class="fa fa-bus"></i>
+                            <i class="fa fa-map"></i>
                         </div>
                         <header>
                             <h3 class="thin">Total Trips</h3>

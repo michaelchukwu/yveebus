@@ -109,7 +109,7 @@
                         <span>
                             @foreach($amount as $price)
                                 <strong>Current base amount</strong>: {{$price->base_amount}}<br>
-                                <strong>Current base amount</strong>: {{$price->price_per_km}}<br>
+                                <strong>Current price per km</strong>: {{$price->price_per_km}}<br>
                             @endforeach
                         </span>
                         <div class="form-group">

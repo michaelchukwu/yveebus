@@ -53,7 +53,7 @@
 
                         <hr>
 
-                        <a href="#" data-modal-external-file="modal_reset_password.php" data-target="modal-reset-password">Forgot your password?</a>
+                        <a href="/password/reset">Forgot your password?</a>
                     </section>
                 </div>
                 <!--col-md-4-->
