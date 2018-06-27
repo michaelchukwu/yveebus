@@ -17,133 +17,103 @@
         <script src="{{ asset('assets/libs/respond/respond.min.js') }}"></script>
         <![endif]-->
 
-
-
-
 @endsection
 @section('content')
 <div class="page-content">
-                <div class="page-subheading page-subheading-md">
-    <ol class="breadcrumb">
-        <li><a href="/janitor">Janitor</a></li>
-        <li class="active"><a href="javascript:;">New User</a></li>
-    </ol>
-</div>
-<div class="page-heading page-heading-md">
-    <h2>New User</h2>
-</div>
+    <div class="page-subheading page-subheading-md">
+        <ol class="breadcrumb">
+            <li><a href="/janitor">Janitor</a></li>
+            <li class="active"><a href="javascript:;">New User</a></li>
+        </ol>
+    </div>
+    <div class="page-heading page-heading-md">
+        <h2>New User+</h2>
+    </div>
 
-<div class="container-fluid-md">
-    <div class="row">
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <div class="col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
-            <form class="form-horizontal form-bordered" method="POST">
-                {{ Form::token() }}
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">New User</h4>
-
-                        <div class="panel-options">
-                            <a href="#" data-rel="collapse"><i class="fa fa-fw fa-minus"></i></a>
-                            <a href="#" data-rel="reload"><i class="fa fa-fw fa-refresh"></i></a>
-                            <a href="#" data-rel="close"><i class="fa fa-fw fa-times"></i></a>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <label class="control-label col-sm-4">No of Seats</label>
-
-                            <div class="col-sm-8">
-                                <input class="form-control" name="seats" type="number" value="" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-4">Registration</label>
-
-                            <div class="col-sm-8">
-                                <input class="form-control" type="text" name="reg_num" value="" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-footer">
-                        <div class="form-group">
-                            <div class="col-sm-offset-4 col-sm-8">
-                                <button type="submit" class="btn btn-primary">Add</button>
-                            </div>
-                        </div>
-                    </div>
+    <div class="container-fluid-md">
+        <div class="row">
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
-            </form>
+            @endif
+            <div class="col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
+                {!! Form::open(array('route' => 'users.store','method'=>'POST', 'class'=>'form-horizontal form-bordered')) !!}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">New User</h4>
+
+                            <div class="panel-options">
+                                <a href="#" data-rel="collapse"><i class="fa fa-fw fa-minus"></i></a>
+                                <a href="#" data-rel="reload"><i class="fa fa-fw fa-refresh"></i></a>
+                                <a href="#" data-rel="close"><i class="fa fa-fw fa-times"></i></a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4">Name</label>
+
+                                <div class="col-sm-8">
+                                    {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4">Email</label>
+
+                                <div class="col-sm-8">
+                                    {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4">Phone</label>
+
+                                <div class="col-sm-8">
+                                    {!! Form::text('phone', null, array('placeholder' => 'Phone number','class' => 'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4">Password</label>
+
+                                <div class="col-sm-8">
+                                    {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4">Confirm Passeord</label>
+
+                                <div class="col-sm-8">
+                                    {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4">Role</label>
+
+                                <div class="col-sm-8">
+                                    {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-8">
+                                    <button type="submit" class="btn btn-primary">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {!! Form::close() !!}
+
+            </div>
 
         </div>
-
     </div>
 </div>
-</div>
 
-
-
-
-
-
-
-
-
-
-
-
-{!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
-<div class="row">
-<div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Name:</strong>
-                {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Email:</strong>
-                {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>phone:</strong>
-                {!! Form::text('phone', null, array('placeholder' => 'Phone number','class' => 'form-control')) !!}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Password:</strong>
-                {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Confirm Password:</strong>
-                {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Role:</strong>
-                {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-<button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-</div>
-{!! Form::close() !!}
 @endsection
 @section('scripts')
         <script src="{{ asset('admin/assets/libs/jquery/jquery.min.js') }}"></script>
