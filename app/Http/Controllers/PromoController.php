@@ -70,7 +70,7 @@ class PromoController extends Controller
     {
         $promo = Promo::find($id);
 
-        return view('promos.show',compact('promo'));
+        return view('promos.edit',compact('promo'));
     }
 
 

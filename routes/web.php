@@ -53,6 +53,8 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('routes/{id}/deactivate', 'RouteController@deactivate')->name('route.deactivate');
 
         Route::resource('locations', 'LocationController');
+        Route::get('busstop', 'LocationController@createBusstop')->name('locations.busstop.create');
+        // Route::post('busstop', 'LocationController@showBusstop')->name('location.busstop.show');
 
         Route::resource('roles','RoleController');
         Route::get('/bus', 'BusController@index')->name('bus');

@@ -242,6 +242,11 @@
                                         <i class="fa fa-fw fa-caret-right"></i> Create Location
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('locations.busstop.create') }}" title="Create Busstop">
+                                        <i class="fa fa-fw fa-caret-right"></i> Create Busstop
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-dropdown">

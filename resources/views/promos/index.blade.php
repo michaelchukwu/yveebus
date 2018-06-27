@@ -62,7 +62,7 @@
                         <td>{{ $promo->amount }}</td>
                         <td>{{ $promo->description }}</td>
                         <td>
-                        <a class="btn btn-info" href="{{ route('promos.show',$promo->id) }}">Show</a>
+                        {{-- <a class="btn btn-info" href="{{ route('promos.show',$promo->id) }}">Show</a> --}}
                         {{--  @permission('promos-edit')  --}}
                         <a class="btn btn-primary" href="{{ route('promos.edit',$promo->id) }}">Edit</a>
                         {{--  @endpermission  --}}

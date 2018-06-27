@@ -160,4 +160,9 @@ class LocationController extends Controller
             return redirect()->back()->with('error', 'No Route');
         }
     }
+    public function createBusstop()
+    {
+        $locations = Location::where('parent', 0)->get();
+        return view('locations.createBusstop', compact('locations'));
+    }
 }

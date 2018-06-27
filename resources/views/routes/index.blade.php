@@ -65,7 +65,7 @@
                         <?php $bus = App\Bus::where('id', $route->bus_id)->first(); ?>
                         <td>{{ $bus->reg_num }}</td>
                         <td>
-                        <a class="btn btn-info" href="{{ route('routes.show',$route->id) }}">Show</a>
+                        {{-- <a class="btn btn-info" href="{{ route('routes.show',$route->id) }}">Show</a> --}}
                         <a class="btn btn-primary" href="{{ route('routes.edit',$route->id) }}">Edit</a>
                         {!! Form::open(['method' => 'DELETE','route' => ['routes.destroy', $route->id],'style'=>'display:inline']) !!}
                                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}

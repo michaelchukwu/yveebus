@@ -81,11 +81,11 @@
                 <div class="page-subheading page-subheading-md">
     <ol class="breadcrumb">
         <li><a href="/janitor">Janitor</a></li>
-        <li class="active"><a href="javascript:;">Add Location</a></li>
+        <li class="active"><a href="javascript:;">Add Busstop</a></li>
     </ol>
 </div>
 <div class="page-heading page-heading-md">
-    <h2>Add Location</h2>
+    <h2>Add Bustop</h2>
 </div>
 
 <div class="container-fluid-md">
@@ -95,7 +95,8 @@
                 <ul>
                     <li>Drag the map to the location you want</li>
                     <li>Start typing the name of the location you intend to add in the &quot;Enter the location&quot; box</li>
-                    <li>Click on the desired location</li>
+                    <li>Click on the desired busstop</li>
+                    <li>Select the location where this busstop exist</li>
                 </ul>
             </div>
         </div>
@@ -138,8 +139,8 @@
                         
                                 <input class="form-control" type="hidden" name="geometry" id="geometry" value="" required>
                             
-                        <div class="form-group" style="display:none;">
-                            <label class="control-label col-sm-4">Parent</label>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">Location</label>
 
                             <div class="col-sm-8">
                                 <select class="form-control form-select2 select2-offscreen" data-placeholder="Choose a parent..." tabindex="-1" title="" name="parent" id="parent">
